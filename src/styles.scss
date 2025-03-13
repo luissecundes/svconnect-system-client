@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+/* Garantir que o body e html ocupem 100% da altura da tela */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Impede o scroll */
+}
+
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh; /* Faz com que a div ocupe 100% da altura da tela */
+  background-image: url('/assets/img/login-img.png'); /* Caminho correto da imagem */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* Evita scroll */
+}

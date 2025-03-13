@@ -1,0 +1,142 @@
+/* Estilos principais */
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../../assets/img/login-img.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  margin-right: 50px;
+  height: auto;
+  width: 24%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-align: left;
+
+    input,
+    select {
+      width: 90%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input::placeholder {
+      color: #a0a1ae;
+    }
+
+    select {
+      color: #a0a1ae;
+    }
+
+    select option {
+      color: #39393d;
+    }
+
+    select option:first-child {
+      color: #a0a1ae;
+    }
+  }
+
+  .forgot-password {
+    display: block;
+    color: #228dda;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    text-decoration: underline;
+  }
+
+  .forgot-password:hover {
+    color: #156cc9;
+  }
+
+  .btn-login {
+    width: 40%;
+    padding: 15px;
+    background-color: #228dda;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    .btn-login i {
+      margin-left: 8px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: #156cc9;
+    }
+  }
+}
+
+/* Media Query para telas pequenas */
+@media (max-width: 768px) {
+  .login-container {
+    justify-content: center;
+  }
+
+  .login-card {
+    width: 80%;
+    margin-right: 0;
+  }
+
+  .input-group {
+    margin-left: 0;
+  }
+
+  .btn-login {
+    width: 60%;
+  }
+
+  .forgot-password {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+/* Media Query para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+  .login-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .input-group input,
+  .input-group select {
+    width: 100%;
+  }
+
+  .btn-login {
+    width: 80%; 
+  }
+}
