@@ -23,11 +23,12 @@
   h2 {
     margin-bottom: 15px;
     font-size: 2rem;
-    text-align: center;
+    text-align: left;
+    width: 80%;
   }
 
   app-carousel {
-    width: 80%; /* Ajuste o tamanho conforme necessário */
-    height: 60%; /* Ajuste a altura conforme necessário */
+    width: 80%;
+    height: 60%;
   }
 }
