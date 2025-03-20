@@ -1,5 +1,6 @@
 .navbar {
-  width: 100%;
+  width: 100vw; 
+  max-width: 100%;
   height: 60px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -7,11 +8,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-
-  .logo h1 {
-    font-size: 1.5rem;
-    color: #333;
-  }
+  overflow: hidden;
+  box-sizing: border-box;
 
   .search-bar {
     flex: 1;
@@ -19,7 +17,8 @@
     justify-content: center;
 
     input {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       padding: 8px 15px;
       border: 1px solid #ccc;
       border-radius: 20px;
@@ -27,20 +26,70 @@
       transition: 0.3s;
 
       &:focus {
-        border-color: #007bff;
+        border-color: #3f4042;
       }
     }
   }
 
-  .actions button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: #555;
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0; // 🔹 Evita que os ícones fiquem apertados
 
-    &:hover {
-      color: #007bff;
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #1f1e1e;
+
+      &:hover {
+        color: #3f4042;
+      }
+    }
+
+    .dropdown {
+      position: relative;
+
+      .dropdown-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #555;
+
+        &:hover {
+          color: #3f4042;
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        display: none;
+        flex-direction: column;
+        min-width: 150px;
+
+        a {
+          padding: 10px;
+          text-decoration: none;
+          color: #333;
+          display: block;
+
+          &:hover {
+            background: #f4f4f4;
+          }
+        }
+      }
+
+      &:hover .dropdown-menu {
+        display: flex;
+      }
     }
   }
 }
