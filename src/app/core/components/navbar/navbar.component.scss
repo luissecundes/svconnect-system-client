@@ -1,0 +1,46 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+  .logo h1 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 300px;
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+      transition: 0.3s;
+
+      &:focus {
+        border-color: #007bff;
+      }
+    }
+  }
+
+  .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}
