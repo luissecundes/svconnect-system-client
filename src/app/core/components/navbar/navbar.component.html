@@ -1,4 +1,7 @@
 <nav class="navbar">
+  <!-- Botão de menu -->
+  <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
   <div class="logo">
     <h1>Menu</h1>
   </div>
@@ -29,3 +32,6 @@
     </div>
   </div>
 </nav>
+
+<!-- Sidebar -->
+<app-sidebar [isOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()"></app-sidebar>

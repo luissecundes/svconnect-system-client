@@ -1,5 +1,5 @@
 .navbar {
-  width: 100vw; 
+  width: 100vw;
   max-width: 100%;
   height: 60px;
   background-color: white;
@@ -10,6 +10,19 @@
   padding: 0 20px;
   overflow: hidden;
   box-sizing: border-box;
+
+  .menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+    margin-right: 10px;
+
+    &:hover {
+      color: #3f4042;
+    }
+  }
 
   .search-bar {
     flex: 1;
@@ -35,17 +48,23 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-shrink: 0; // 🔹 Evita que os ícones fiquem apertados
+    flex-shrink: 0;
 
     .icon-btn {
       background: none;
-      border: none;
+      border: 2px solid #3f4042;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.2rem;
       cursor: pointer;
-      color: #1f1e1e;
+      color: #3f4042;
 
       &:hover {
-        color: #3f4042;
+        background: #f4f4f4;
       }
     }
 

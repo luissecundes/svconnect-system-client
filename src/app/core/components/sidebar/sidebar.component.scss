@@ -1,0 +1,46 @@
+.sidebar {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  padding: 20px;
+
+  &.open {
+    left: 0;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 20px 0;
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.2rem;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+
+        &:hover {
+          background: #007bff;
+          color: white;
+        }
+      }
+    }
+  }
+}
