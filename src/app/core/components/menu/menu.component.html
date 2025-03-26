@@ -1,1 +1,21 @@
-<p>menu works!</p>
+<!-- action-menu.component.html -->
+<div class="action-menu">
+  <button class="action-btn" (click)="onInsert()">
+    <i class="fas fa-plus-circle"></i> Incluir
+  </button>
+  <button class="action-btn" (click)="onEdit()">
+    <i class="fas fa-edit"></i> Alterar
+  </button>
+  <div class="dropdown">
+    <button class="action-btn">
+      <i class="fas fa-ellipsis-h"></i>
+      <input type="text" class="dropdown-input" readonly value="Outras opções">
+    </button>
+    <div class="dropdown-content">
+      <a href="#" (click)="onOption1()">Opção 1</a>
+      <a href="#" (click)="onOption2()">Opção 2</a>
+      <a href="#" (click)="onOption3()">Opção 3</a>
+    </div>
+  </div>
+</div>
+
