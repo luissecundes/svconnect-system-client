@@ -19,7 +19,13 @@ thead th {
 /* Estilo para as células */
 tbody td {
   padding: 8px;
-  text-align: left; 
+  text-align: left;
+}
+
+/* Garantir que a primeira coluna tenha largura fixa */
+tbody td:first-child, thead th:first-child {
+  width: 50px; /* Ajuste a largura conforme necessário */
+  text-align: center; /* Centraliza o checkbox */
 }
 
 /* Adicionando uma borda sutil para as células */
