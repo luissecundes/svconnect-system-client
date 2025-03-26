@@ -1,0 +1,28 @@
+/* O body ou container principal deve ter altura total */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 95%;
+  max-width: 1800px;
+  margin: 30px auto;
+  height: 180vh;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-title {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
