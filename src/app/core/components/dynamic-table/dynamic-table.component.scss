@@ -2,13 +2,17 @@
   height: 90%;
   overflow-y: auto;
 }
-table, th, td {
-  font-family: 'Manrope', sans-serif;
+
+table,
+th,
+td {
+  font-family: "Manrope", sans-serif;
 }
 
 table {
   width: 99%;
   table-layout: fixed;
+  border-collapse: collapse;
 }
 
 thead th {
@@ -18,6 +22,12 @@ thead th {
   padding: 12px 8px;
   cursor: pointer;
   position: relative;
+  font-size: 0.9em;
+  border-top: 0 !important;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+
 }
 
 /* Estilo para a setinha de ordenação */
@@ -30,27 +40,29 @@ thead th i {
 tbody td {
   padding: 8px;
   text-align: left;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 /* Garantir que a primeira coluna tenha largura fixa */
-tbody td:first-child, thead th:first-child {
+tbody td:first-child,
+thead th:first-child {
   width: 50px;
   text-align: center;
 }
 
-/* Adicionando uma borda sutil para as células */
-table, th, td {
-  border: 1px solid #ddd;
-  border-collapse: collapse;
+/* Ajustando o hover e a seleção */
+.table-hover tbody tr {
+  transition: background-color 0.3s ease; 
 }
 
-/* Ajustando o hover e a seleção */
 .table-hover tbody tr:hover {
-  background-color: #cacecf;
+  background-color: #dddfe0;
   cursor: pointer;
 }
 
 .selected {
-  background-color: #0d633c !important;
+  background-color: #dddfe0 !important;
   font-weight: bold;
 }
