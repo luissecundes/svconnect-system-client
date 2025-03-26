@@ -1,9 +1,40 @@
-.table-hover tbody tr:hover {
+.table-responsive {
+  height: 90%;
+  overflow-y: auto;
+}
+
+table {
+  width: 99%;
+  table-layout: fixed;
+}
+
+/* Estilo para os cabeçalhos da tabela */
+thead th {
   background-color: #f8f9fa;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 8px;
+}
+
+/* Estilo para as células */
+tbody td {
+  padding: 8px;
+  text-align: left; 
+}
+
+/* Adicionando uma borda sutil para as células */
+table, th, td {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+/* Ajustando o hover e a seleção */
+.table-hover tbody tr:hover {
+  background-color: #236275;
   cursor: pointer;
 }
 
 .selected {
-  background-color: #d1e7dd !important; /* Verde claro para destacar */
+  background-color: #0d633c !important;
   font-weight: bold;
 }
