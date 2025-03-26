@@ -19,16 +19,17 @@ thead th {
   background-color: #f8f9fa;
   font-weight: bold;
   text-align: left;
-  padding: 12px 8px;
+  height: 5px;
+  padding: 6px 8px;
   cursor: pointer;
   position: relative;
   font-size: 0.9em;
   border-top: 0 !important;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-
+  border-bottom: 2px solid #ddd;
 }
+
 
 /* Estilo para a setinha de ordenação */
 thead th i {
@@ -54,7 +55,7 @@ thead th:first-child {
 
 /* Ajustando o hover e a seleção */
 .table-hover tbody tr {
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .table-hover tbody tr:hover {
