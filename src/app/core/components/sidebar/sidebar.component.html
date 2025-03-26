@@ -1,3 +1,4 @@
+<!-- sidebar.component.html -->
 <div class="sidebar" [class.open]="isOpen">
   <button class="close-btn" (click)="closeSidebar()">✖</button>
   <ul>
@@ -6,4 +7,8 @@
     <li><a href="#">⚙ Configurações</a></li>
     <li><a href="#">🚪 Sair</a></li>
   </ul>
+</div>
+
+<!-- Content -->
+<div [class.content-with-sidebar]="isOpen" class="content">
 </div>

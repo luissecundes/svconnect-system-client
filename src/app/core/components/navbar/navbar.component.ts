@@ -8,9 +8,14 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  isSidebarOpen = false;
+  isOpen = false;
 
   toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
+    this.isOpen = !this.isOpen;
+  }
+
+  closeSidebar() {
+    this.isOpen = false;
   }
 }
+

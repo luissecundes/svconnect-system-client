@@ -1,3 +1,4 @@
+// <!-- sidebar.component.scss -->
 .sidebar {
   position: fixed;
   left: -250px;
@@ -8,6 +9,7 @@
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   transition: left 0.3s ease;
   padding: 20px;
+  z-index: 100; /* Garante que a sidebar fique por cima de outros componentes */
 
   &.open {
     left: 0;
@@ -42,5 +44,35 @@
         }
       }
     }
+  }
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .search-bar {
+    input {
+      max-width: 200px;
+    }
+  }
+
+  .sidebar {
+    width: 200px;
+    transition: left 0.3s ease-out;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .content {
+    margin-left: 0; /* Aumenta a área do conteúdo quando a sidebar está oculta */
+  }
+
+  .content-with-sidebar {
+    margin-left: 250px; /* Deixa espaço para a sidebar quando ela estiver visível */
   }
 }
