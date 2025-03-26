@@ -3,7 +3,7 @@
   display: flex;
   gap: 15px;
   margin: 20px 0;
-  margin-left: 40px;  /* Ajuste conforme necessário */
+  margin-left: 40px;
 }
 
 .action-btn {
@@ -20,7 +20,7 @@
 }
 
 .action-btn i {
-  margin-right: 8px; /* Espaço entre o ícone e o texto */
+  margin-right: 8px; 
 }
 
 .action-btn:hover {
@@ -59,7 +59,7 @@
 .dropdown-input {
   border: none;
   background-color: transparent;
-  color: white; /* Agora o texto dentro do input será branco */
+  color: white;
   font-size: 14px;
   cursor: pointer;
   width: 100px;
