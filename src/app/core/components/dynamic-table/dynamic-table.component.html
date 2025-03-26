@@ -1,0 +1,49 @@
+<div class="col-12">
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+          @if (showSelectionColumn) {
+            <th>
+              <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="selectedItems.size === data.length"/>
+            </th>
+          }
+          @for (col of columns; track col.label) {
+            <th>{{ col.label }}</th>
+          }
+          @if (actions.length > 0) {
+            <th>Actions</th>
+          }
+        </tr>
+        </thead>
+        <tbody>
+          @for (item of data; track item.id) {
+            <tr>
+              @if (showSelectionColumn) {
+                <td>
+                  <input type="checkbox" (change)="toggleSelectItem(item)" [checked]="isSelected(item)"/>
+                </td>
+              }
+              @for (col of columns; track col.key) {
+                <td>{{ item[col.key] }}</td>
+              }
+              @if (actions.length > 0) {
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    @for (action of actions; track action.action) {
+                      <button class="btn btn-outline-secondary"
+                              (click)="action.action(item)" [title]="action.tooltip">
+                        <i [class]="action.icon"></i>
+                      </button>
+                    }
+                  </div>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
