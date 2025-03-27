@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .login-container {
@@ -17,8 +17,8 @@ html, body {
   overflow: hidden;
 }
 // Variáveis globais
-$sidebar-width-expanded: 110px;
-$sidebar-width-collapsed: 300px;
+$sidebar-width-expanded: 90px;
+$sidebar-width-collapsed: 280px;
 $transition-speed: 0.3s;
 
 // Classe genérica para ajuste de conteúdo
