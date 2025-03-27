@@ -17,3 +17,17 @@ html, body {
   background-position: center;
   overflow: hidden; /* Evita scroll */
 }
+// Variáveis globais
+$sidebar-width-expanded: 110px;
+$sidebar-width-collapsed: 300px;
+$transition-speed: 0.3s;
+
+// Classe genérica para ajuste de conteúdo
+.content {
+  transition: margin-left $transition-speed ease-in-out;
+  margin-left: $sidebar-width-expanded; // Padrão: sidebar aberta
+
+  &.collapsed {
+    margin-left: $sidebar-width-collapsed; // Sidebar recolhida
+  }
+}
