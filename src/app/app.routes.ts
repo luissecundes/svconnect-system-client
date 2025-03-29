@@ -2,13 +2,29 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ClientesComponent } from './modules/clientes/clientes.component';
+import { AuthGuard } from './guards/auth.guard'; // Import do guard
 
+// Colocar o AuthGuard em todas as rotas que precisam de autenticação
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'clientes', component: ClientesComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
 
-    // generic 404
-    { path: "**", redirectTo: "home" },
+  //HomeComponent
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+
+  // ClientesComponent
+  {
+    path: 'clientes',
+    component: ClientesComponent,
+  },
+
+  // FornecedoresComponent
+
+  { path: '**', redirectTo: 'home' },
 ];
