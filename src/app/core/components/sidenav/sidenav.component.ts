@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { navbarData } from './nav-data';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -14,12 +14,16 @@ interface SideNavToggle {
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
-
-export class SidenavComponent implements OnInit{
+export class SidenavComponent implements OnInit {
   @Output() onToggleSidenav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
+  constructor(private router: Router) {}
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
@@ -39,4 +43,13 @@ export class SidenavComponent implements OnInit{
       screenWidth: this.screenWidth,
     });
   }
+
+  // Criação de dropdown
+  // toggleDropdown(item: any) {
+  //   if (item.submenu) {
+  //     item.expanded = !item.expanded;
+  //   } else {
+  //     this.navigateTo(item.routeLink);
+  //   }
+  // }
 }
