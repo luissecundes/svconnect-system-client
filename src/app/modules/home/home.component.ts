@@ -4,6 +4,7 @@ import { SidenavComponent } from '../../core/components/sidenav/sidenav.componen
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../../core/components/carousel/carousel.component';
 import { NavbarComponent } from '../../core/components/navbar/navbar.component';
+import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,6 @@ import { NavbarComponent } from '../../core/components/navbar/navbar.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  sidenavCollapsed = false;
+export class HomeComponent extends SidenavBaseComponent {
   title = HOME_DATA;
-
-  handleSidenavToggle(event: { collapsed: boolean; screenWidth: number }) {
-    this.sidenavCollapsed = event.collapsed;
-  }
 }

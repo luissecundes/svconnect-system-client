@@ -6,6 +6,7 @@ import { SidenavComponent } from '../../core/components/sidenav/sidenav.componen
 import { NavbarComponent } from '../../core/components/navbar/navbar.component';
 import { CarouselComponent } from '../../core/components/carousel/carousel.component';
 import { MenuComponent } from '../../core/components/menu/menu.component';
+import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 
 @Component({
   selector: 'app-clientes',
@@ -19,10 +20,5 @@ import { MenuComponent } from '../../core/components/menu/menu.component';
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.scss',
 })
-export class ClientesComponent {
-  sidenavCollapsed = false;
-
-  handleSidenavToggle(event: { collapsed: boolean; screenWidth: number }) {
-    this.sidenavCollapsed = event.collapsed;
-  }
+export class ClientesComponent extends SidenavBaseComponent {
 }
