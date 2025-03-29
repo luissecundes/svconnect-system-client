@@ -5,15 +5,15 @@ import { LayoutComponent } from '../../core/components/layout/layout.component';
 import { SidenavComponent } from '../../core/components/sidenav/sidenav.component';
 import { NavbarComponent } from '../../core/components/navbar/navbar.component';
 import { CarouselComponent } from '../../core/components/carousel/carousel.component';
+import { MenuComponent } from '../../core/components/menu/menu.component';
 
 @Component({
   selector: 'app-clientes',
   imports: [
     TestDynamicTableComponent,
-    LayoutComponent,
     SidenavComponent,
     NavbarComponent,
-    CarouselComponent,
+    MenuComponent,
     CommonModule
   ],
   templateUrl: './clientes.component.html',
