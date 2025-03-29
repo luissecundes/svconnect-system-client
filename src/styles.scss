@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .login-container {
@@ -14,7 +14,7 @@ html, body {
   background-image: url('/assets/img/login-img.png');
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  overflow: auto;
 }
 // Variáveis globais
 $sidebar-width-expanded: 90px;
