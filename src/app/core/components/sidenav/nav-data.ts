@@ -6,7 +6,7 @@ export const navbarData = [
   },
   {
     routeLink: '/clientes',
-    icon: 'fal fa-users',
+    icon: 'fas fa-clipboard-user',
     label: 'Clientes',
     // expanded: false, // <-- propriedade de dropdown
     // submenu: [
