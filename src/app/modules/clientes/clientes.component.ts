@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../core/components/navbar/navbar.component';
-import { MenuComponent } from '../../core/components/menu/menu.component';
 import { TestDynamicTableComponent } from '../../test-dynamic-table/test-dynamic-table.component';
-import { SidenavComponent } from '../../core/components/sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
+import { LayoutComponent } from '../../core/components/layout/layout.component';
 
 @Component({
   selector: 'app-clientes',
   imports: [
-    NavbarComponent,
-    MenuComponent,
     TestDynamicTableComponent,
-    SidenavComponent,
+    LayoutComponent,
     CommonModule
   ],
   templateUrl: './clientes.component.html',
