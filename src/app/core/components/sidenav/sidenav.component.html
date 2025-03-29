@@ -10,7 +10,7 @@
       Menu
     </div>
 
-    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+    <button class="btn-close" [ngClass]="collapsed ? 'show-text' : 'hide-text'" (click)="closeSidenav()">
       <i class="fal fa-times close-icon"></i>
     </button>
   </div>
