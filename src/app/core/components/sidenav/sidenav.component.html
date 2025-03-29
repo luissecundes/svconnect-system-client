@@ -15,3 +15,35 @@
     </li>
   </ul>
 </div>
+
+<!-- Opção para submenu -->
+<!-- <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapsed()">SV</button>
+    <div class="logo-text" *ngIf="collapsed">System</div>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a
+        class="sidenav-nav-link"
+        (click)="toggleDropdown(data)"
+        [routerLink]="!data.submenu ? data.routeLink : null"
+      >
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
+        <i class="fal fa-chevron-down dropdown-icon" *ngIf="data.submenu"></i>
+      </a>
+
+      <ul *ngIf="data.submenu && data.expanded" class="submenu">
+        <li *ngFor="let sub of data.submenu">
+          <a class="sidenav-sub-link" [routerLink]="sub.routeLink">
+            {{ sub.label }}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div> -->
