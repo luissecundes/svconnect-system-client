@@ -1,8 +1,11 @@
-<!-- navbar.component.html -->
 <nav class="navbar">
+  <button class="menu-btn" (click)="toggleCollapsed()">
+    <i class="fas fa-bars"></i>
+  </button>
   <div class="logo">
     <h1>SV Connect System</h1>
   </div>
+
   <div class="search-bar">
     <input type="text" placeholder="Pesquisar..." />
   </div>
@@ -26,5 +29,3 @@
     </div>
   </div>
 </nav>
-
-
