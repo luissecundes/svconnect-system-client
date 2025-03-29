@@ -5,8 +5,9 @@
   z-index: 1;
   top: 3.5rem;
   width: 5rem;
-  height: calc(100vh - 3rem);  // Diminuir a altura, por exemplo 100vh - 3rem
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  height: calc(100vh - 3rem);
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra somente na parte inferior */
 
   .logo-container {
     display: flex;
