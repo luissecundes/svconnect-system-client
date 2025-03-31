@@ -1,8 +1,0 @@
-<!-- layout.component.html -->
-<app-sidenav (onToggleSidenav)="handleSidenavToggle($event)"></app-sidenav>
-<div class="content" [ngClass]="{ 'collapsed': sidenavCollapsed }">
-  <app-navbar></app-navbar>
-  <div class="main-content">
-    <ng-content></ng-content> 
-  </div>
-</div>
