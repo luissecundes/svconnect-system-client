@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { routes } from './app.routes'; // Importe suas rotas
+import { routes } from './app.routes'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +12,7 @@ import { routes } from './app.routes'; // Importe suas rotas
     BrowserModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    RouterModule.forRoot(routes), // Use suas rotas definidas
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],
