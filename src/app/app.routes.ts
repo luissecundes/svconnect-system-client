@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ClientesComponent } from './modules/clientes/clientes.component';
-import { AuthGuard } from './guards/auth.guard'; // Import do guard
+import { AuthGuard } from './guards/auth.guard'; // Import do guard (NÃO ESQUECER)
 import { EstoqueComponent } from './modules/estoque/estoque.component';
 import { FinanceiroComponent } from './modules/financeiro/financeiro.component';
 import { PcpComponent } from './modules/pcp/pcp.component';
