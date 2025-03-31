@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
+import {
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationError,
+  NavigationCancel,
+} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
@@ -10,16 +16,12 @@ export class LoadingGuard {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.spinner.show();
-      } else if (event instanceof NavigationEnd) {
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 3000);
-      } else if (event instanceof NavigationError) {
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationError ||
+        event instanceof NavigationCancel
+      ) {
         this.spinner.hide();
-      } else if (event instanceof NavigationCancel) {
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 3000);
       }
     });
   }
