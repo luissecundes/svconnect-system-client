@@ -8,6 +8,7 @@ import { FinanceiroComponent } from './modules/financeiro/financeiro.component';
 import { PcpComponent } from './modules/pcp/pcp.component';
 import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-humanos.component';
 import { VendasComponent } from './modules/vendas/vendas.component';
+import { LoadingGuard } from './guards/loading.guard';
 
 // Colocar o AuthGuard em todas as rotas quando o sistema estiver pronto
 export const routes: Routes = [
@@ -15,36 +16,42 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoadingGuard],
   },
 
   //HomeComponent
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [LoadingGuard],
   },
 
   // ClientesComponent
   {
     path: 'clientes',
     component: ClientesComponent,
+    canActivate: [LoadingGuard],
   },
 
   // EstoqueComponent
   {
     path: 'estoque',
     component: EstoqueComponent,
+    canActivate: [LoadingGuard],
   },
 
   // FinanceiroComponent
   {
     path: 'financeiro',
     component: FinanceiroComponent,
+    canActivate: [LoadingGuard],
   },
 
   // PcpComponent
   {
     path: 'pcp',
     component: PcpComponent,
+    canActivate: [LoadingGuard],
   },
 
   // RecursosHumanosComponent
