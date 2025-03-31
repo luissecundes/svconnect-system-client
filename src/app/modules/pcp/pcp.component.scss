@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding-top: 50px;
+}
+
+.content-container {
+  padding-left: -300px;
+  padding-top: 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-body {
+  font-size: 1rem;
+  color: #555;
+}
