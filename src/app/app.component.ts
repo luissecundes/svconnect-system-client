@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterOutlet } from '@angular/router';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BrowserAnimationsModule, NgxSpinnerModule],
+  standalone: false,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'original-portas-client';
+
+  constructor(private spinner: NgxSpinnerService) {}
+
+  openSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 5000);
+  }
 }
+
