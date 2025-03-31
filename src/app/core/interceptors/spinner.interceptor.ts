@@ -29,7 +29,7 @@ export class SpinnerInterceptor implements HttpInterceptor {
       finalize(() => {
         this.requestCount--;
         if (this.requestCount === 0) {
-          setTimeout(() => this.spinner.hide(), 3000); // Ajuste o tempo conforme necessário
+          setTimeout(() => this.spinner.hide(), 3000); 
         }
       })
     );
