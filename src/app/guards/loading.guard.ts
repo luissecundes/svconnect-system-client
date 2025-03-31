@@ -21,6 +21,9 @@ export class LoadingGuard {
         event instanceof NavigationError ||
         event instanceof NavigationCancel
       ) {
+        // setTimeout(() => {
+        //   this.spinner.hide();
+        // }, 3000);
         this.spinner.hide();
       }
     });
