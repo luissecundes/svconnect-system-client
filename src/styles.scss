@@ -30,3 +30,6 @@ $transition-speed: 0.3s;
     margin-left: $sidebar-width-collapsed;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
