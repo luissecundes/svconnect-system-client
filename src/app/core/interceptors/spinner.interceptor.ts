@@ -1,37 +1,64 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
-  HttpEvent,
-  HttpHandler,
   HttpInterceptor,
   HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpResponse,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, finalize, tap } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize } from 'rxjs/operators';
+import { NotificationService } from '../../services/notification/notification.service';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
-  private requestCount = 0;
-
-  constructor(private spinner: NgxSpinnerService) {}
+  private spinnerService = inject(NgxSpinnerService);
+  private notificationService = inject(NotificationService);
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.requestCount++;
+    this.spinnerService.show();
 
-    if (this.requestCount === 1) {
-      this.spinner.show();
-    }
-
-    return next.handle(request).pipe(
+    return next.handle(req).pipe(
+      tap({
+        next: (event) => {
+          if (event instanceof HttpResponse) {
+            this.spinnerService.hide();
+          }
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            this.handleHttpError(error);
+          }
+        },
+      }),
       finalize(() => {
-        this.requestCount--;
-        if (this.requestCount === 0) {
-          setTimeout(() => this.spinner.hide(), 3000); 
-        }
+        this.spinnerService.hide();
       })
     );
+  }
+
+  private handleHttpError(error: HttpErrorResponse): void {
+    let errorMessage = 'Ocorreu um erro inesperado.';
+
+    switch (error.status) {
+      case 400:
+        errorMessage = 'Falha na requisição';
+        break;
+      case 401:
+        errorMessage = 'Usuário não autorizado';
+        break;
+      case 404:
+        errorMessage = 'Página não encontrada';
+        break;
+      case 500:
+        errorMessage = 'Erro de Servidor';
+        break;
+    }
+
+    this.notificationService.showMessage(errorMessage);
   }
 }

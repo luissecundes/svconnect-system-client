@@ -14,18 +14,21 @@ import { AuthService } from '../../services/auth/auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isLoading: boolean = false; 
 
   private authService = inject(AuthService);
   private router = inject(Router);
 
   onSubmit(): void {
+    this.isLoading = true;
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
+        this.isLoading = false;
         this.router.navigate(['/home']);
       },
-      error: (error) => {
-        alert('Usuário ou senha inválidos!');
+      error: () => {
+        this.isLoading = false;
       },
     });
   }

@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,8 @@ import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    NotificationComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
