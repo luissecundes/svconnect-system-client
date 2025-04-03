@@ -21,12 +21,10 @@ export class LoginComponent {
   onSubmit(): void {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
-        console.log('Login bem-sucedido!', response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/home']);
       },
       error: (error) => {
-        console.error('Erro no login:', error);
         alert('Usuário ou senha inválidos!');
       },
     });
