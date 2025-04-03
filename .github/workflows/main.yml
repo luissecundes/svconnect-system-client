@@ -9,9 +9,9 @@ on:
       - master
 
 jobs:
-  build:
+  CI:
+    name: Continuous Integration
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -26,3 +26,23 @@ jobs:
 
       - name: Build do projeto
         run: npm run build --if-present
+
+  CD:
+    name: Continuous Deploy
+    runs-on: ubuntu-latest
+    needs: CI
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Obter informações do ambiente Vercel
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Construir artefatos do projeto
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Fazer deploy dos artefatos para o Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
