@@ -89,14 +89,16 @@
 
       .dropdown-menu {
         position: absolute;
+        padding-bottom: 10px;
         right: 0;
-        top: 40px;
+        top: 100%;
         background: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         display: none;
         flex-direction: column;
         min-width: 150px;
+        z-index: 100;
 
         a {
           padding: 10px;
