@@ -1,29 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [HttpClientModule, FormsModule], // Importação direta, pois não há module
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  company: string = '';
-  branch: string = '';
-  module: string = '';
 
-  constructor(private router: Router) {}
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   onSubmit(): void {
-    console.log('Login submitted', {
-      username: this.username,
-      password: this.password,
-      company: this.company,
-      branch: this.branch,
-      module: this.module,
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        console.log('Login bem-sucedido!', response);
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']); 
+      },
+      error: (error) => {
+        console.error('Erro no login:', error);
+        alert('Usuário ou senha inválidos!');
+      },
     });
-
-    this.router.navigate(['/home']);
   }
 }

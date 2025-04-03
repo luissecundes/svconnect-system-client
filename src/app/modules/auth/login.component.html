@@ -1,12 +1,13 @@
 <div class="login-container">
   <div class="login-card">
     <h2>SV Connect System</h2>
-    <form>
+    <form (submit)="onSubmit(); $event.preventDefault()">
       <div class="input-group">
         <input
           type="text"
           id="username"
           name="username"
+          [(ngModel)]="username"
           placeholder="Usuário"
           required
         />
@@ -17,21 +18,22 @@
           type="password"
           id="password"
           name="password"
+          [(ngModel)]="password"
           placeholder="Senha"
           required
         />
       </div>
 
-      <div class="input-group">
+      <!-- <div class="input-group">
         <select id="company" name="company" required>
           <option value="" style="color: #888">Selecione sua Empresa</option>
           <option value="company1">Original Portas</option>
           <option value="company2">SV Connect</option>
           <option value="company3">Outras das 35 empresas</option>
         </select>
-      </div>
+      </div> -->
 
-      <div class="input-group">
+      <!-- <div class="input-group">
         <select id="branch" name="branch" required>
           <option value="">Selecione sua Filial</option>
           <option value="branch1">Matriz</option>
@@ -39,9 +41,9 @@
           <option value="branch2">Filial 2</option>
           <option value="branch3">Filial 3</option>
         </select>
-      </div>
+      </div> -->
 
-      <div class="input-group">
+      <!-- <div class="input-group">
         <select id="module" name="module" required>
           <option value="">Selecione um módulo</option>
           <option value="module1">Clientes</option>
@@ -49,7 +51,7 @@
           <option value="module3">Orçamentos</option>
           <option value="module3">Vendas</option>
         </select>
-      </div>
+      </div> -->
       <a href="#" class="forgot-password">Esqueci a senha</a>
       <button type="submit" class="btn-login" (click)="onSubmit()">
         <i class="fas fa-check-circle"></i>
