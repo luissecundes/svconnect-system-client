@@ -10,60 +10,55 @@ import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-hu
 import { VendasComponent } from './modules/vendas/vendas.component';
 import { LoadingGuard } from './core/guards/loading.guard';
 
-// Colocar o AuthGuard em todas as rotas quando o sistema estiver pronto
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [LoadingGuard]
   },
 
-  //HomeComponent
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // ClientesComponent
   {
     path: 'clientes',
     component: ClientesComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // EstoqueComponent
   {
     path: 'estoque',
     component: EstoqueComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // FinanceiroComponent
   {
     path: 'financeiro',
     component: FinanceiroComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // PcpComponent
   {
     path: 'pcp',
     component: PcpComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // RecursosHumanosComponent
   {
     path: 'recursos-humanos',
     component: RecursosHumanosComponent,
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
-  // VendasComponent
   {
     path: 'vendas',
     component: VendasComponent,
+    canActivate: [AuthGuard, LoadingGuard]
   },
 
   { path: '**', redirectTo: 'home' },

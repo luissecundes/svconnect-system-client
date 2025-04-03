@@ -17,4 +17,9 @@ export class AuthService {
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, { email, password });
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    console.log('Usuário deslogado. Redirecionando...');
+  }
 }
