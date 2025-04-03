@@ -14,15 +14,16 @@
       <i class="fas fa-bell"></i>
     </button>
     <span class="username">João Silva</span>
-    <div class="dropdown">
-      <button class="dropdown-btn">
-        <i class="fas fa-user-circle"></i>
-      </button>
-      <div class="dropdown-menu">
-        <a href="#">Perfil</a>
-        <a href="#">Configurações</a>
-        <a href="#">Sair</a>
-      </div>
-    </div>
+   <div class="dropdown" [class.open]="isDropdownOpen">
+  <button class="dropdown-btn" (click)="toggleDropdown()">
+    <i class="fas fa-user-circle"></i>
+  </button>
+  <div class="dropdown-menu" *ngIf="isDropdownOpen">
+    <a href="#">Perfil</a>
+    <a href="#">Configurações</a>
+    <a href="#">Sair</a>
+  </div>
+</div>
+
   </div>
 </nav>

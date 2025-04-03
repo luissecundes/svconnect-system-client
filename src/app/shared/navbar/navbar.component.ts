@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  isOpen = false;
+  isDropdownOpen = false;
 
-  toggleSidebar() {
-    this.isOpen = !this.isOpen;
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  closeSidebar() {
-    this.isOpen = false;
+  @HostListener('document:click', ['$event'])
+  closeDropdown(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.isDropdownOpen = false;
+    }
   }
 }
-
