@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../core/components/navbar/navbar.component';
-import { SidenavComponent } from '../../core/components/sidenav/sidenav.component';
-import { MenuComponent } from '../../core/components/menu/menu.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
+import { MenuComponent } from '../../shared/menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 

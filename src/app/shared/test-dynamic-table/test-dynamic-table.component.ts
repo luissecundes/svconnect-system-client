@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicTableComponent } from '../core/components/dynamic-table/dynamic-table.component';
+import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
 
 @Component({
   selector: 'app-test-dynamic-table',

@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ClientesComponent } from './modules/clientes/clientes.component';
-import { AuthGuard } from './guards/auth.guard'; // Import do guard (NÃO ESQUECER)
+import { AuthGuard } from './core/guards/auth.guard'; // Import do guard (NÃO ESQUECER)
 import { EstoqueComponent } from './modules/estoque/estoque.component';
 import { FinanceiroComponent } from './modules/financeiro/financeiro.component';
 import { PcpComponent } from './modules/pcp/pcp.component';
 import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-humanos.component';
 import { VendasComponent } from './modules/vendas/vendas.component';
-import { LoadingGuard } from './guards/loading.guard';
+import { LoadingGuard } from './core/guards/loading.guard';
 
 // Colocar o AuthGuard em todas as rotas quando o sistema estiver pronto
 export const routes: Routes = [

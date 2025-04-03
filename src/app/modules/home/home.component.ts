@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HOME_DATA } from './data';
-import { SidenavComponent } from '../../core/components/sidenav/sidenav.component';
+import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
-import { CarouselComponent } from '../../core/components/carousel/carousel.component';
-import { NavbarComponent } from '../../core/components/navbar/navbar.component';
+import { CarouselComponent } from '../../shared/carousel/carousel.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 
 @Component({

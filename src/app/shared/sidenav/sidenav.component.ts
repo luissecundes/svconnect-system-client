@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { navbarData } from './nav-data';
 import { Router, RouterModule } from '@angular/router';
-import { SideNavToggle } from '../../interfaces/sidenav-toggle.interface';
+import { SideNavToggle } from '../../core/interfaces/sidenav-toggle.interface';
 
 @Component({
   selector: 'app-sidenav',

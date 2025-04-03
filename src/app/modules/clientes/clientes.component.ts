@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { TestDynamicTableComponent } from '../../test-dynamic-table/test-dynamic-table.component';
+import { TestDynamicTableComponent } from '../../shared/test-dynamic-table/test-dynamic-table.component';
 import { CommonModule } from '@angular/common';
-import { SidenavComponent } from '../../core/components/sidenav/sidenav.component';
-import { NavbarComponent } from '../../core/components/navbar/navbar.component';
-import { MenuComponent } from '../../core/components/menu/menu.component';
+import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { MenuComponent } from '../../shared/menu/menu.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 
 @Component({
