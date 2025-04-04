@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestDynamicTableComponent } from '../../shared/test-dynamic-table/test-dynamic-table.component';
+import { ClientesDynamicTableComponent } from '../../mocks/clientes-dynamic-table/clientes-dynamic-table.component';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
@@ -9,7 +9,7 @@ import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 @Component({
   selector: 'app-clientes',
   imports: [
-    TestDynamicTableComponent,
+    ClientesDynamicTableComponent,
     SidenavComponent,
     NavbarComponent,
     MenuComponent,

@@ -5,12 +5,22 @@
         <thead>
           <tr>
             <th *ngIf="showSelectionColumn">
-              <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="selectedItems.size === data.length" />
+              <input
+                type="checkbox"
+                (change)="toggleSelectAll($event)"
+                [checked]="selectedItems.size === data.length"
+              />
             </th>
             <th *ngFor="let col of columns" (click)="sortData(col.key)">
               {{ col.label }}
               <span *ngIf="isSorted(col.key)">
-                <i [class]="sortDirection === 'asc' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'"></i>
+                <i
+                  [class]="
+                    sortDirection === 'asc'
+                      ? 'fas fa-arrow-up'
+                      : 'fas fa-arrow-down'
+                  "
+                ></i>
               </span>
             </th>
             <th *ngIf="actions.length > 0">Actions</th>
@@ -19,12 +29,33 @@
         <tbody>
           <tr *ngFor="let item of data; trackBy: trackItem">
             <td *ngIf="showSelectionColumn">
-              <input type="checkbox" (change)="toggleSelectItem(item)" [checked]="isSelected(item)" />
+              <input
+                type="checkbox"
+                (change)="toggleSelectItem(item)"
+                [checked]="isSelected(item)"
+              />
             </td>
-            <td *ngFor="let col of columns">{{ item[col.key] }}</td>
+            <td *ngFor="let col of columns">
+              <ng-container
+                *ngIf="col.key === 'formaPagamento'; else defaultCell"
+              >
+                <span
+                  >{{ getPaymentColor(item[col.key]) }}
+                  {{ item[col.key] }}</span
+                >
+              </ng-container>
+              <ng-template #defaultCell>
+                {{ item[col.key] }}
+              </ng-template>
+            </td>
             <td *ngIf="actions.length > 0">
               <div class="btn-group btn-group-sm">
-                <button *ngFor="let action of actions" class="btn btn-outline-secondary" (click)="action.action(item)" [title]="action.tooltip">
+                <button
+                  *ngFor="let action of actions"
+                  class="btn btn-outline-secondary"
+                  (click)="action.action(item)"
+                  [title]="action.tooltip"
+                >
                   <i [class]="action.icon"></i>
                 </button>
               </div>

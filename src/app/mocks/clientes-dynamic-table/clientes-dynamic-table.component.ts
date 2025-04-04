@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
+import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.component';
 
 @Component({
   selector: 'app-test-dynamic-table',
   imports: [DynamicTableComponent],
-  templateUrl: './test-dynamic-table.component.html',
-  styleUrls: ['./test-dynamic-table.component.scss'],
+  templateUrl: './clientes-dynamic-table.component.html',
+  styleUrls: ['./clientes-dynamic-table.component.scss'],
 })
-export class TestDynamicTableComponent {
+export class ClientesDynamicTableComponent {
   columns = [
     { key: 'codigo', label: 'Código' },
     { key: 'cadastro', label: 'Cadastro' },

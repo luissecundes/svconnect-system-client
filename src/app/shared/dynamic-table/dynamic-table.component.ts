@@ -80,6 +80,17 @@ export class DynamicTableComponent {
     });
   }
 
+  getPaymentColor(paymentMethod: string): string {
+    const colors: { [key: string]: string } = {
+      Dinheiro: '🟢',
+      Cheque: '🟠',
+      Pix: '🔴',
+      'Cartão de Crédito': '🔵',
+      'Cartão de Débito': '🔷', 
+    };
+    return colors[paymentMethod] || '⚫';
+  }
+
   // Método para verificar se a coluna está ordenada
   isSorted(columnKey: string): boolean {
     return this.sortColumn === columnKey;
@@ -89,7 +100,6 @@ export class DynamicTableComponent {
   getSortDirection(columnKey: string): string {
     return this.sortColumn === columnKey ? this.sortDirection : '';
   }
-
 
   trackItem(index: number, item: any): any {
     return item ? item.id || item : index;
