@@ -6,11 +6,7 @@ import { NotificationService } from '../../services/notification/notification.se
   selector: 'app-notification',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div *ngIf="message$ | async as message" class="notification">
-      {{ message }}
-    </div>
-  `,
+  templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
 })
 export class NotificationComponent {
