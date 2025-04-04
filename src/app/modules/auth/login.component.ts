@@ -12,23 +12,25 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
-  isLoading: boolean = false; 
+  isLoading: boolean = false;
 
   private authService = inject(AuthService);
   private router = inject(Router);
 
   onSubmit(): void {
     this.isLoading = true;
-    this.authService.login(this.username, this.password).subscribe({
-      next: (response) => {
-        localStorage.setItem('token', response.token);
+    this.authService.login(this.email, this.password).subscribe({
+      next: (token: string) => {
+        localStorage.setItem('token', token);
         this.isLoading = false;
         this.router.navigate(['/home']);
       },
-      error: () => {
+      error: (err) => {
         this.isLoading = false;
+        console.error('Erro ao logar:', err);
+        alert('Email ou senha inválidos');
       },
     });
   }
