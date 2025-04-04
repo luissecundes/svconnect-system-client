@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { StorageService } from '../../services/auth/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
-  // Guard para proteger as rotas
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private storageService: StorageService
+  ) {}
 
   canActivate(): boolean {
-    const token = localStorage.getItem('token');
-    const isAuthenticated = !!token;
+    const token = this.storageService.getToken();
 
-    if (!isAuthenticated) {
+    if (!token || !this.authService.isTokenValid(token)) {
       this.router.navigate(['/login']);
       return false;
     }
+
     return true;
   }
 }

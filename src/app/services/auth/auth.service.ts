@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { LoginResponse } from '../../core/interfaces/login-response.interface';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private storage = inject(StorageService);
   private apiUrl = environment.apiUrl;
+  private router = inject(Router);
 
   login(email: string, password: string): Observable<LoginResponse> {
     return environment.useMockAuth
@@ -22,7 +24,8 @@ export class AuthService {
 
   logout(): void {
     this.storage.removeToken();
-    console.log('Usuário deslogado. Redirecionando...');
+    this.router.navigate(['/login']);
+    console.log('Usuário deslogado.');
   }
 
   private realLogin(
@@ -32,8 +35,22 @@ export class AuthService {
     return this.http.post<LoginResponse>(this.apiUrl, { email, password });
   }
 
+  isTokenValid(token: string): boolean {
+    if (environment.useMockAuth) {
+      return !!token;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const exp = payload.exp * 1000;
+      return Date.now() < exp;
+    } catch (e) {
+      return false;
+    }
+  }
+
   private mockLogin(email: string): Observable<LoginResponse> {
-    console.log('🚧 API desativada, retornando mock...');
+    console.log('API desativada, retornando mock...');
     const mockResponse: LoginResponse = {
       token: 'fake-token',
       user: {

@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
-  useMockAuth: true,
+  production: true,
+  useMockAuth: false,
   apiUrl: 'http://localhost:8080/auth/login',
 };
