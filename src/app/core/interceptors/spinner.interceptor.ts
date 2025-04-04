@@ -5,16 +5,15 @@ import {
   HttpHandler,
   HttpEvent,
   HttpResponse,
-  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, finalize, tap } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NotificationService } from '../../services/notification/notification.service';
+import { HttpErrorHandlerService } from '../../services/exceptions/http-error-handler.service';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
   private spinnerService = inject(NgxSpinnerService);
-  private notificationService = inject(NotificationService);
+  private errorHandler = inject(HttpErrorHandlerService);
 
   intercept(
     req: HttpRequest<any>,
@@ -30,35 +29,12 @@ export class SpinnerInterceptor implements HttpInterceptor {
           }
         },
         error: (error) => {
-          if (error instanceof HttpErrorResponse) {
-            this.handleHttpError(error);
-          }
+          this.errorHandler.handle(error);
         },
       }),
       finalize(() => {
         this.spinnerService.hide();
       })
     );
-  }
-
-  private handleHttpError(error: HttpErrorResponse): void {
-    let errorMessage = 'Ocorreu um erro inesperado.';
-
-    switch (error.status) {
-      case 400:
-        errorMessage = 'Falha na requisição';
-        break;
-      case 401:
-        errorMessage = 'Usuário não autorizado';
-        break;
-      case 404:
-        errorMessage = 'Página não encontrada';
-        break;
-      case 500:
-        errorMessage = 'Erro de Servidor';
-        break;
-    }
-
-    this.notificationService.showMessage(errorMessage);
   }
 }
