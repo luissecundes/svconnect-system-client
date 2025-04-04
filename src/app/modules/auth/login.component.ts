@@ -29,8 +29,6 @@ export class LoginComponent {
       },
       error: (err) => {
         this.isLoading = false;
-        console.error('Erro ao logar:', err);
-        alert('Email ou senha inválidos');
       },
     });
   }
