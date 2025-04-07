@@ -10,7 +10,7 @@ import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.
 })
 export class VendasDynamicTableComponent {
   @Output() rowClicked = new EventEmitter<any>();
-
+  
   columns = [
     { key: 'codigo', label: 'Código' },
     { key: 'emissao', label: 'Emissão' },
@@ -117,7 +117,7 @@ export class VendasDynamicTableComponent {
     return `R$ ${(Math.random() * 5000 + 50).toFixed(2)}`;
   }
 
-  onRowClick(item: any) {
+  onRowClicked(item: any) {
     this.rowClicked.emit(item);
   }
 }

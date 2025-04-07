@@ -19,10 +19,15 @@ export class DynamicTableComponent {
   @Input() showSelectionColumn: boolean = true;
 
   @Output() selectionChanged: EventEmitter<any[]> = new EventEmitter();
+  @Output() rowClicked = new EventEmitter<any>();
 
   selectedItems: Set<any> = new Set();
-  sortColumn: string = ''; // Coluna para ordenação
-  sortDirection: 'asc' | 'desc' = 'asc'; // Direção da ordenação
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
+
+  onRowClick(item: any) {
+    this.rowClicked.emit(item);
+  }
 
   toggleSelectAll(event: any) {
     if (event.target.checked) {
@@ -86,7 +91,7 @@ export class DynamicTableComponent {
       Cheque: '🟠',
       Pix: '🔴',
       'Cartão de Crédito': '🔵',
-      'Cartão de Débito': '🔷', 
+      'Cartão de Débito': '🔷',
     };
     return colors[paymentMethod] || '⚫';
   }

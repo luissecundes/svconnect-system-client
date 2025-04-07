@@ -7,7 +7,14 @@
       <h2>Vendas</h2>
       <div class="body-area">
         <app-menu></app-menu>
-        <app-vendas-dynamic-table></app-vendas-dynamic-table>
+        <app-vendas-dynamic-table
+          (rowClicked)="onRowClicked($event)"
+        ></app-vendas-dynamic-table>
+        <app-detail-drawer
+          [data]="selectedItem"
+          [visible]="drawerVisible"
+          (onClose)="closeDetail()"
+        ></app-detail-drawer>
       </div>
     </div>
   </div>

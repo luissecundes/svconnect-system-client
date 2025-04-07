@@ -1,0 +1,13 @@
+<div class="drawer" [class.visible]="visible">
+  <div class="drawer-header">
+    <h4>Resumo do Pedido</h4>
+    <button class="close-btn" (click)="closeDrawer()">✖</button>
+  </div>
+
+  <div class="drawer-content" [class.fade-in]="fadeIn">
+    <div class="detail-row" *ngFor="let key of objectKeys(data)">
+      <span class="label">{{ getLabel(key) }}:</span>
+      <span class="value">{{ data[key] }}</span>
+    </div>
+  </div>
+</div>

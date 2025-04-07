@@ -1,8 +1,10 @@
+<!-- compras-dynamic-table.component.html -->
 <div class="container mt-5">
   <app-dynamic-table
     [columns]="columns"
     [data]="data"
     [showSelectionColumn]="true"
     (selectionChanged)="onSelectionChanged($event)"
+    (rowClicked)="onRowClicked($event)"
   ></app-dynamic-table>
 </div>

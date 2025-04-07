@@ -1,0 +1,85 @@
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 64px;
+  width: 350px;
+  height: calc(100% - 64px);
+  background-color: white;
+  border-left: 1px solid #ccc;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+
+  // animação:
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.fade-in {
+  animation: fade 0.3s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.drawer.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.drawer-header h4 {
+  margin: 0;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.drawer-content {
+  margin-top: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detail-row {
+  margin-bottom: 12px;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.value {
+  margin-left: 4px;
+  color: #555;
+}

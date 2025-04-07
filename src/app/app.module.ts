@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-import { DetailDrawerComponent } from "./shared/details-dynamic/detail-drawer.component";
+import { DetailDrawerComponent } from "./shared/detail-drawer/detail-drawer.component";
 
 @NgModule({
   declarations: [AppComponent],

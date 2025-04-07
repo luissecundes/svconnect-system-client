@@ -5,7 +5,8 @@ import { MenuComponent } from '../../shared/menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { VendasDynamicTableComponent } from '../../mocks/vendas-dynamic-table/vendas-dynamic-table.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
-import { DetailDrawerComponent } from '../../shared/details-dynamic/detail-drawer.component';
+import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
+import { ComprasDynamicTableComponent } from '../../mocks/compras-dynamic-table/compras-dynamic-table.component';
 
 @Component({
   selector: 'app-compras',
@@ -15,7 +16,7 @@ import { DetailDrawerComponent } from '../../shared/details-dynamic/detail-drawe
     DetailDrawerComponent,
     MenuComponent,
     CommonModule,
-    VendasDynamicTableComponent,
+    ComprasDynamicTableComponent,
   ],
   templateUrl: './compras.component.html',
   styleUrl: './compras.component.scss',
@@ -25,8 +26,14 @@ export class ComprasComponent extends SidenavBaseComponent {
   selectedItem: any = null;
 
   openDetail(item: any) {
+    console.log('Registro clicado aqui:', item);
     this.selectedItem = item;
     this.drawerVisible = true;
+  }
+
+  onRowClicked(item: any) {
+    console.log('método clicado:', this.openDetail(item));
+    this.openDetail(item);
   }
 
   closeDetail() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.component';
 
 @Component({
@@ -9,6 +9,8 @@ import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.
   styleUrls: ['./compras-dynamic-table.component.scss'],
 })
 export class ComprasDynamicTableComponent {
+  @Output() rowClicked = new EventEmitter<any>();
+
   columns = [
     { key: 'codigo', label: 'Código' },
     { key: 'emissao', label: 'Emissão' },
@@ -39,6 +41,10 @@ export class ComprasDynamicTableComponent {
       action: (item: any) => this.delete(item),
     },
   ];
+
+  onRowClicked(item: any) {
+    this.rowClicked.emit(item);
+  }
 
   onSelectionChanged(selectedItems: any[]) {
     console.log('Itens selecionados:', selectedItems);
