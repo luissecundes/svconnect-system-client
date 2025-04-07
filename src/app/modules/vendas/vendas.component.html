@@ -9,10 +9,19 @@
         <app-menu></app-menu>
         <app-vendas-dynamic-table
           (rowClicked)="onRowClicked($event)"
-        ></app-vendas-dynamic-table>
-        <app-detail-drawer
+        ></app-vendas-dynamic-table
+        ><app-detail-drawer
           [data]="selectedItem"
           [visible]="drawerVisible"
+          [title]="'Resumo do Pedido'"
+          [labelsMap]="{
+            codigo: 'Código',
+            emissao: 'Emissão',
+            nomeCliente: 'Nome do Cliente',
+            formaPagamento: 'Forma de Pagamento',
+            vendedor: 'Vendedor',
+            valorTotal: 'Valor Total'
+          }"
           (onClose)="closeDetail()"
         ></app-detail-drawer>
       </div>

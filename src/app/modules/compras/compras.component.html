@@ -14,6 +14,15 @@
         <app-detail-drawer
           [data]="selectedItem"
           [visible]="drawerVisible"
+          [title]="'Resumo do Pedido'"
+          [labelsMap]="{
+            codigo: 'Código',
+            emissao: 'Emissão',
+            nomeCliente: 'Nome do Cliente',
+            formaPagamento: 'Forma de Pagamento',
+            vendedor: 'Vendedor',
+            valorTotal: 'Valor Total'
+          }"
           (onClose)="closeDetail()"
         ></app-detail-drawer>
       </div>

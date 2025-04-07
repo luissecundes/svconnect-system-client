@@ -1,21 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-detail-drawer',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './detail-drawer.component.html',
   styleUrls: ['./detail-drawer.component.scss'],
-  standalone: true,
 })
-export class DetailDrawerComponent {
-  @Input() data: any = {};
+export class DetailDrawerComponent implements OnChanges {
+  @Input() data: Record<string, any> = {};
   @Input() visible: boolean = false;
+  @Input() labelsMap: Record<string, string> = {};
+  @Input() title: string = 'Detalhes';
+
   @Output() onClose = new EventEmitter<void>();
+
   fadeIn = false;
 
-  ngOnChanges() {
-    if (this.visible) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['data'] && this.visible) {
       this.triggerFadeIn();
     }
   }
@@ -36,14 +47,6 @@ export class DetailDrawerComponent {
   }
 
   getLabel(key: string): string {
-    const labels: Record<string, string> = {
-      codigo: 'Código',
-      emissao: 'Emissão',
-      nomeCliente: 'Nome do Cliente',
-      formaPagamento: 'Forma de Pagamento',
-      vendedor: 'Vendedor',
-      valorTotal: 'Valor Total',
-    };
-    return labels[key] || key;
+    return this.labelsMap[key] || key;
   }
 }
