@@ -7,20 +7,22 @@
       <h2>Vendas</h2>
       <div class="body-area">
         <app-menu></app-menu>
+
         <app-vendas-dynamic-table
           (rowClicked)="onRowClicked($event)"
-        ></app-vendas-dynamic-table
-        ><app-detail-drawer
-          [data]="selectedItem"
-          [visible]="drawerVisible"
+        ></app-vendas-dynamic-table>
+
+        <app-detail-drawer
+          [visible]="(drawerVisible$ | async) ?? false"
+          [data]="selectedItem$ | async"
           [title]="'Resumo do Pedido'"
           [labelsMap]="{
             codigo: 'Código',
-            emissao: 'Emissão',
-            nomeCliente: 'Nome do Cliente',
-            formaPagamento: 'Forma de Pagamento',
+            emissao: 'Data de Emissão',
+            nomeCliente: 'Cliente',
+            formaPagamento: 'Pagamento',
             vendedor: 'Vendedor',
-            valorTotal: 'Valor Total'
+            valorTotal: 'Total'
           }"
           (onClose)="closeDetail()"
         ></app-detail-drawer>

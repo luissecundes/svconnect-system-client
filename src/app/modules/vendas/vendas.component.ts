@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 import { VendasDynamicTableComponent } from '../../mocks/vendas-dynamic-table/vendas-dynamic-table.component';
 import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
+import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
 
 @Component({
   selector: 'app-vendas',
@@ -21,34 +22,21 @@ import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.
   styleUrl: './vendas.component.scss',
 })
 export class VendasComponent extends SidenavBaseComponent {
-  drawerVisible = false;
-  selectedItem: any = null;
+  drawerVisible$;
+  selectedItem$;
 
-  openDetail(item: any) {
-    this.selectedItem = item;
-    this.drawerVisible = true;
+  constructor(private drawerService: DetailDrawerService) {
+    super(); 
+    this.drawerVisible$ = this.drawerService.drawerVisible$;
+    this.selectedItem$ = this.drawerService.selectedItem$;
   }
 
   onRowClicked(item: any) {
-    const isSameItem =
-      this.selectedItem && this.selectedItem.codigo === item.codigo;
-
-    if (isSameItem) {
-      this.drawerVisible = false;
-      // Espera a animação terminar antes de limpar
-      setTimeout(() => {
-        this.selectedItem = null;
-      }, 300); // tempo igual ao da animação no CSS
-    } else {
-      this.selectedItem = item;
-      this.drawerVisible = true;
-    }
+    this.drawerService.toggle(item);
   }
 
   closeDetail() {
-    this.drawerVisible = false;
-    setTimeout(() => {
-      this.selectedItem = null;
-    }, 300);
+    this.drawerService.close();
   }
 }
+

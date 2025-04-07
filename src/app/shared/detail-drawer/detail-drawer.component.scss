@@ -11,7 +11,8 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-
+  border-radius: 16px 0 0 16px;
+  
   // animação:
   transform: translateX(100%);
   opacity: 0;
