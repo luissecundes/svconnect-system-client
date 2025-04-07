@@ -1,16 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.component';
 
 @Component({
-  selector: 'app-vendas-dynamic-table',
+  selector: 'app-compras-dynamic-table',
   standalone: true,
   imports: [DynamicTableComponent],
-  templateUrl: './vendas-dynamic-table.component.html',
-  styleUrls: ['./vendas-dynamic-table.component.scss'],
+  templateUrl: './compras-dynamic-table.component.html',
+  styleUrls: ['./compras-dynamic-table.component.scss'],
 })
-export class VendasDynamicTableComponent {
-  @Output() rowClicked = new EventEmitter<any>();
-
+export class ComprasDynamicTableComponent {
   columns = [
     { key: 'codigo', label: 'Código' },
     { key: 'emissao', label: 'Emissão' },
@@ -115,9 +113,5 @@ export class VendasDynamicTableComponent {
 
   private generateValorTotal(): string {
     return `R$ ${(Math.random() * 5000 + 50).toFixed(2)}`;
-  }
-
-  onRowClick(item: any) {
-    this.rowClicked.emit(item);
   }
 }

@@ -9,6 +9,7 @@ import { PcpComponent } from './modules/pcp/pcp.component';
 import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-humanos.component';
 import { VendasComponent } from './modules/vendas/vendas.component';
 import { LoadingGuard } from './core/guards/loading.guard';
+import { ComprasComponent } from './modules/compras/compras.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,49 +17,55 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoadingGuard]
+    canActivate: [LoadingGuard],
   },
 
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'clientes',
     component: ClientesComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'estoque',
     component: EstoqueComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'financeiro',
     component: FinanceiroComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'pcp',
     component: PcpComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'recursos-humanos',
     component: RecursosHumanosComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   {
     path: 'vendas',
     component: VendasComponent,
-    canActivate: [AuthGuard, LoadingGuard]
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+
+  {
+    path: 'compras',
+    component: ComprasComponent,
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   { path: '**', redirectTo: 'home' },

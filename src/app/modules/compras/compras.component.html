@@ -1,0 +1,19 @@
+<app-sidenav (onToggleSidenav)="handleSidenavToggle($event)"></app-sidenav>
+<div class="content" [ngClass]="{ collapsed: sidenavCollapsed }">
+  <app-navbar></app-navbar>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Cotação de Compra</h2>
+      <div class="body-area">
+        <app-menu></app-menu>
+        <app-vendas-dynamic-table></app-vendas-dynamic-table>
+        <app-detail-drawer
+          [data]="selectedItem"
+          [visible]="drawerVisible"
+          (onClose)="closeDetail()"
+        ></app-detail-drawer>
+      </div>
+    </div>
+  </div>
+</div>

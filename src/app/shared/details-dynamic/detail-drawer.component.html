@@ -1,0 +1,9 @@
+<div class="drawer" *ngIf="visible">
+  <div class="drawer-header">
+    <h4>Detalhes</h4>
+    <button (click)="closeDrawer()">✖</button>
+  </div>
+  <div class="drawer-content">
+    <pre>{{ data | json }}</pre>
+  </div>
+</div>
