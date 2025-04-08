@@ -10,6 +10,7 @@ import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-hu
 import { VendasComponent } from './modules/vendas/vendas.component';
 import { LoadingGuard } from './core/guards/loading.guard';
 import { ComprasComponent } from './modules/compras/compras.component';
+import { ClientesUpdateComponent } from './modules/clientes/update/clientes.update.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,42 +27,59 @@ export const routes: Routes = [
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // Clientes
   {
     path: 'clientes',
     component: ClientesComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
+  {
+    path: 'clientes/update',
+    component: ClientesUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'clientes/update/:id',
+    component: ClientesUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
 
+  // Estoque
   {
     path: 'estoque',
     component: EstoqueComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // Financeiro
   {
     path: 'financeiro',
     component: FinanceiroComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // PCP
   {
     path: 'pcp',
     component: PcpComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // Recursos Humanos
   {
     path: 'recursos-humanos',
     component: RecursosHumanosComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // Vendas
   {
     path: 'vendas',
     component: VendasComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
+  // Compras
   {
     path: 'compras',
     component: ComprasComponent,
