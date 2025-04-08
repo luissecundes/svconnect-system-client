@@ -5,6 +5,7 @@ import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { MenuComponent } from '../../shared/menu/menu.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -13,10 +14,16 @@ import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
     SidenavComponent,
     NavbarComponent,
     MenuComponent,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.scss',
 })
 export class ClientesComponent extends SidenavBaseComponent {
+  constructor(private router: Router) {
+    super();
+  }
+  onInsertCliente() {
+    this.router.navigate(['/clientes/update']);
+  }
 }
