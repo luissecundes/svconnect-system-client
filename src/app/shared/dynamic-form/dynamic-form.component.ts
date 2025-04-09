@@ -9,11 +9,12 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { DynamicField } from '../../core/interfaces/dynamic-field.interface';
+import { CurrencyMaskDirective } from '../../core/utils/currency-mask.directive';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CurrencyMaskDirective],
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
 })
