@@ -28,7 +28,6 @@ export class ProdutosComponent extends SidenavBaseComponent implements OnInit {
 
   produtos: any[] = [];
   columns = [
-    { key: 'id', label: 'ID', width: '25px' },
     { key: 'skuCode', label: 'SKU', width: '80px' },
     { key: 'name', label: 'Nome', width: '200px' },
     { key: 'productType', label: 'Tipo', width: '150px' },
@@ -51,7 +50,7 @@ export class ProdutosComponent extends SidenavBaseComponent implements OnInit {
       next: (response) => {
         this.produtos = response.data.content.map((produto: any) => ({
           ...produto,
-          productType: produto.productType?.name || '',
+          productType: produto.productType?.description || '',
           unitOfMeasure: produto.unitOfMeasure?.description || '',
           productStatus: produto.productStatus?.description || '',
         }));
