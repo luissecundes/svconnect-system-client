@@ -12,26 +12,49 @@
             {{ field.label }}
             <span *ngIf="field.required">*</span>
           </label>
+
           <input
-            [type]="field.isCurrency ? 'text' : field.type || 'text'"
+            *ngIf="!field.mask"
+            [type]="field.type || 'text'"
             [formControlName]="field.key"
             [readonly]="field.readonly"
             [disabled]="field.disabled ?? false"
-            [placeholder]="typeof field.placeholder === 'string' ? field.placeholder : ''"
+            [placeholder]="field.placeholder || ''"
             class="form-control"
-            *ngIf="!field.isCurrency; else currencyField"
           />
-          <ng-template #currencyField>
-            <input
-              type="text"
-              [formControlName]="field.key"
-              [readonly]="field.readonly"
-              [disabled]="field.disabled ?? false"
-              [placeholder]="field.placeholder || ''"
-              class="form-control"
-              appCurrencyMask
-            />
-          </ng-template>
+
+          <input
+            *ngIf="field.mask === 'currency'"
+            type="text"
+            [formControlName]="field.key"
+            [readonly]="field.readonly"
+            [disabled]="field.disabled ?? false"
+            [placeholder]="field.placeholder || ''"
+            class="form-control"
+            appCurrencyMask
+          />
+
+          <input
+            *ngIf="field.mask === 'cpfCnpj'"
+            type="text"
+            [formControlName]="field.key"
+            [readonly]="field.readonly"
+            [disabled]="field.disabled ?? false"
+            [placeholder]="field.placeholder || ''"
+            class="form-control"
+            appCpfCnpjMask
+          />
+
+          <input
+            *ngIf="field.mask === 'telefone'"
+            type="text"
+            [formControlName]="field.key"
+            [readonly]="field.readonly"
+            [disabled]="field.disabled ?? false"
+            [placeholder]="field.placeholder || ''"
+            class="form-control"
+            appTelefoneMask
+          />
         </div>
       </ng-container>
     </div>

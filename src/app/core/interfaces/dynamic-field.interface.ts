@@ -10,5 +10,5 @@ export interface DynamicField {
   placeholder?: string;
   disabled?: boolean;
   validators?: ValidatorFn[];
-  isCurrency?: boolean; 
+  mask?: 'currency' | 'cpfCnpj' | 'telefone';
 }

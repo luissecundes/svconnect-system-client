@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BaseLayoutComponent } from '../../../shared/layout/base-layout/base-layout.component';
 import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
+import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
 
 @Component({
   selector: 'app-clientes.update',
@@ -12,7 +13,7 @@ import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.
   styleUrls: ['./clientes.update.component.scss'],
 })
 export class ClientesUpdateComponent extends SidenavBaseComponent {
-  fields = [
+  fields: DynamicField[] = [
     { key: 'id', label: 'ID', type: 'text', readonly: true, colSpan: 3 },
     {
       key: 'dataCadastro',
@@ -30,8 +31,9 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
     },
     {
       key: 'cpf',
-      label: 'CPF',
+      label: 'CPF ou CNPJ',
       type: 'text',
+      mask: 'cpfCnpj',
       colSpan: 4,
     },
     {
@@ -44,6 +46,7 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
       key: 'telefone',
       label: 'Telefone',
       type: 'text',
+      mask: 'telefone',
       colSpan: 4,
     },
     {
@@ -68,7 +71,7 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
       key: 'limiteCredito',
       label: 'Limite de Crédito',
       type: 'number',
-      isCurrency: true,
+      mask: 'currency',
       colSpan: 4,
     },
   ];

@@ -9,12 +9,14 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { DynamicField } from '../../core/interfaces/dynamic-field.interface';
-import { CurrencyMaskDirective } from '../../core/utils/currency-mask.directive';
+import { CurrencyMaskDirective } from '../../core/utils/directives/currency-mask.directive';
+import { CpfCnpjMaskDirective } from '../../core/utils/directives/cpf-cnpj-mask.directive';
+import { TelefoneMaskDirective } from '../../core/utils/directives/telephone-mask.directive';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CurrencyMaskDirective],
+  imports: [CommonModule, ReactiveFormsModule, CurrencyMaskDirective, CpfCnpjMaskDirective, TelefoneMaskDirective],
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
 })
