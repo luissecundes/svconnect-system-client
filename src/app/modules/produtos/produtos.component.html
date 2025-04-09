@@ -1,0 +1,29 @@
+<app-base-layout>
+  <div class="card-container">
+    <div class="card">
+      <h2>Produtos</h2>
+      <div class="body-area">
+        <app-menu (insert)="onInsertProdutos()"></app-menu>
+
+        <app-produtos-dynamic-table
+          (rowClicked)="onRowClicked($event)"
+        ></app-produtos-dynamic-table>
+
+        <app-detail-drawer
+          [visible]="(drawerVisible$ | async) ?? false"
+          [data]="selectedItem$ | async"
+          [title]="'Resumo do Produto'"
+          [labelsMap]="{
+            codigo: 'Código',
+            emissao: 'Data de Cadastro',
+            nomeProduto: 'Nome do Produto',
+            categoria: 'Categoria',
+            fornecedor: 'Fornecedor',
+            preco: 'Preço'
+          }"
+          (onClose)="closeDetail()"
+        ></app-detail-drawer>
+      </div>
+    </div>
+  </div>
+</app-base-layout>

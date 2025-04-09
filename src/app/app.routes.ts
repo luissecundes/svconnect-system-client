@@ -10,7 +10,9 @@ import { RecursosHumanosComponent } from './modules/recursos-humanos/recursos-hu
 import { VendasComponent } from './modules/vendas/vendas.component';
 import { LoadingGuard } from './core/guards/loading.guard';
 import { ComprasComponent } from './modules/compras/compras.component';
-import { ClientesUpdateComponent } from './modules/clientes/update/clientes.update.component';
+import { ClientesUpdateComponent } from './modules/clientes/_update/clientes.update.component';
+import { ProdutosComponent } from './modules/produtos/produtos.component';
+import { ProdutosUpdateComponent } from './modules/produtos/_update/produtos.update.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -48,6 +50,23 @@ export const routes: Routes = [
   {
     path: 'estoque',
     component: EstoqueComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+
+  // Produtos
+  {
+    path: 'produtos',
+    component: ProdutosComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'produtos/update',
+    component: ProdutosUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'produtos/update/:id',
+    component: ProdutosUpdateComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 

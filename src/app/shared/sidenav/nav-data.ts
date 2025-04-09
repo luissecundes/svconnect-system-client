@@ -15,6 +15,11 @@ export const navbarData = [
     label: 'Estoque',
   },
   {
+    routeLink: '/produtos',
+    icon: 'fas fa-box',
+    label: 'Produtos',
+  },
+  {
     routeLink: '/financeiro',
     icon: 'fas fa-dollar-sign',
     label: 'Financeiro',
