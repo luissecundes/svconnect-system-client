@@ -5,18 +5,48 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   standalone: true,
 })
 export class TelefoneMaskDirective {
-  constructor(private el: ElementRef) {}
+  private el: HTMLInputElement;
+
+  constructor(private elementRef: ElementRef) {
+    this.el = this.elementRef.nativeElement;
+  }
 
   @HostListener('input', ['$event'])
-  onInput() {
-    let value = this.el.nativeElement.value.replace(/\D/g, '');
+  onInput(event: InputEvent) {
+    const cursorPosition = this.el.selectionStart || 0;
+    let rawValue = this.el.value.replace(/\D/g, '');
 
-    if (value.length <= 10) {
-      value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-    } else {
-      value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    // limitação a 11 dígitos (ex: 11987654321)
+    if (rawValue.length > 11) {
+      rawValue = rawValue.slice(0, 11);
     }
 
-    this.el.nativeElement.value = value;
+    let maskedValue = '';
+
+    if (rawValue.length <= 10) {
+      // formato fixo: (99) 9999-9999
+      maskedValue = rawValue.replace(
+        /(\d{0,2})(\d{0,4})(\d{0,4})/,
+        (match, p1, p2, p3) =>
+          `${p1 ? '(' + p1 : ''}${p1 && p1.length === 2 ? ')' : ''}${
+            p2 ? ' ' + p2 : ''
+          }${p3 ? '-' + p3 : ''}`
+      );
+    } else {
+      // Formato celular: (99) 99999-9999
+      maskedValue = rawValue.replace(
+        /(\d{0,2})(\d{0,5})(\d{0,4})/,
+        (match, p1, p2, p3) =>
+          `${p1 ? '(' + p1 : ''}${p1 && p1.length === 2 ? ')' : ''}${
+            p2 ? ' ' + p2 : ''
+          }${p3 ? '-' + p3 : ''}`
+      );
+    }
+
+    this.el.value = maskedValue;
+
+    setTimeout(() => {
+      this.el.setSelectionRange(this.el.value.length, this.el.value.length);
+    });
   }
 }

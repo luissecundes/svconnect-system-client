@@ -5,21 +5,56 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   standalone: true,
 })
 export class CpfCnpjMaskDirective {
-  constructor(private el: ElementRef) {}
+  private el: HTMLInputElement;
+
+  constructor(private elementRef: ElementRef) {
+    this.el = this.elementRef.nativeElement;
+  }
 
   @HostListener('input', ['$event'])
-  onInput() {
-    let value = this.el.nativeElement.value.replace(/\D/g, '');
+  onInput(event: InputEvent) {
+    const cursorPosition = this.el.selectionStart || 0;
+    let rawValue = this.el.value.replace(/\D/g, '');
 
-    if (value.length <= 11) {
-      value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    if (rawValue.length > 14) {
+      rawValue = rawValue.slice(0, 14);
+    }
+
+    let maskedValue = '';
+
+    if (rawValue.length <= 11) {
+      // CPF: 000.000.000-00
+      maskedValue = rawValue.replace(
+        /(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/,
+        (match, p1, p2, p3, p4) => {
+          return [
+            p1,
+            p2 ? '.' + p2 : '',
+            p3 ? '.' + p3 : '',
+            p4 ? '-' + p4 : '',
+          ].join('');
+        }
+      );
     } else {
-      value = value.replace(
-        /(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/,
-        '$1.$2.$3/$4-$5'
+      // CNPJ: 00.000.000/0000-00
+      maskedValue = rawValue.replace(
+        /(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/,
+        (match, p1, p2, p3, p4, p5) => {
+          return [
+            p1,
+            p2 ? '.' + p2 : '',
+            p3 ? '.' + p3 : '',
+            p4 ? '/' + p4 : '',
+            p5 ? '-' + p5 : '',
+          ].join('');
+        }
       );
     }
 
-    this.el.nativeElement.value = value;
+    this.el.value = maskedValue;
+
+    setTimeout(() => {
+      this.el.setSelectionRange(this.el.value.length, this.el.value.length);
+    });
   }
 }
