@@ -1,0 +1,27 @@
+<div class="form-card">
+  <h2 *ngIf="formTitle">{{ formTitle }}</h2>
+
+  <form [formGroup]="form">
+    <div class="form-grid">
+      <ng-container *ngFor="let field of fields">
+        <div
+          class="field-wrapper"
+          [ngClass]="'col-span-' + (field.colSpan || 3)"
+        >
+          <label>
+            {{ field.label }}
+            <span *ngIf="field.required">*</span>
+          </label>
+          <input
+            [type]="field.type || 'text'"
+            [formControlName]="field.key"
+            [readonly]="field.readonly"
+            [disabled]="field.disabled ?? false"
+            [placeholder]="typeof field.placeholder === 'string' ? field.placeholder : ''"
+            class="form-control"
+          />
+        </div>
+      </ng-container>
+    </div>
+  </form>
+</div>
