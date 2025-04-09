@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../../shared/carousel/carousel.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
+import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, SidenavComponent, CommonModule, CarouselComponent],
+  imports: [BaseLayoutComponent, CommonModule, CarouselComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

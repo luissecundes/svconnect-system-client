@@ -6,13 +6,13 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { MenuComponent } from '../../shared/menu/menu.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 import { Router } from '@angular/router';
+import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 
 @Component({
   selector: 'app-clientes',
   imports: [
     ClientesDynamicTableComponent,
-    SidenavComponent,
-    NavbarComponent,
+    BaseLayoutComponent,
     MenuComponent,
     CommonModule,
   ],

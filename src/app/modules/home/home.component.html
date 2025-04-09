@@ -1,7 +1,4 @@
-<app-sidenav (onToggleSidenav)="handleSidenavToggle($event)"></app-sidenav>
-<div class="content" [ngClass]="{ collapsed: sidenavCollapsed }">
-  <app-navbar></app-navbar>
-
+<app-base-layout>
   <div class="card-container">
     <div class="card">
       <h2>Home</h2>
@@ -52,7 +49,9 @@
           no resultant pleasure?"
         </p>
         <h1 style="text-align: center">Provável Dashboard</h1>
-      </div><div class="body-area">
+      </div>
+
+      <div class="body-area">
         <h2>Notas da atualização v0.1</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -101,4 +100,4 @@
       </div>
     </div>
   </div>
-</div>
+</app-base-layout>

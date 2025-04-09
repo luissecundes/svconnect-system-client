@@ -7,12 +7,12 @@ import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 import { VendasDynamicTableComponent } from '../../mocks/vendas-dynamic-table/vendas-dynamic-table.component';
 import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
+import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 
 @Component({
   selector: 'app-vendas',
   imports: [
-    SidenavComponent,
-    NavbarComponent,
+    BaseLayoutComponent,
     MenuComponent,
     CommonModule,
     DetailDrawerComponent,
@@ -26,7 +26,7 @@ export class VendasComponent extends SidenavBaseComponent {
   selectedItem$;
 
   constructor(private drawerService: DetailDrawerService) {
-    super(); 
+    super();
     this.drawerVisible$ = this.drawerService.drawerVisible$;
     this.selectedItem$ = this.drawerService.selectedItem$;
   }

@@ -1,7 +1,4 @@
-<app-sidenav (onToggleSidenav)="handleSidenavToggle($event)"></app-sidenav>
-<div class="content" [ngClass]="{ collapsed: sidenavCollapsed }">
-  <app-navbar></app-navbar>
-
+<app-base-layout>
   <div class="card-container">
     <div class="card">
       <h2>Clientes</h2>
@@ -11,4 +8,4 @@
       </div>
     </div>
   </div>
-</div>
+</app-base-layout>

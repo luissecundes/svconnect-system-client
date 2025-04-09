@@ -7,13 +7,13 @@ import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
 import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
 import { ComprasDynamicTableComponent } from '../../mocks/compras-dynamic-table/compras-dynamic-table.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
+import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 
 @Component({
   selector: 'app-compras',
   standalone: true,
   imports: [
-    SidenavComponent,
-    NavbarComponent,
+    BaseLayoutComponent,
     DetailDrawerComponent,
     MenuComponent,
     CommonModule,
