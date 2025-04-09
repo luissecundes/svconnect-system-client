@@ -12,7 +12,11 @@
                 [checked]="selectedItems.size === data.length"
               />
             </th>
-            <th *ngFor="let col of columns" (click)="sortData(col.key)">
+            <th
+              *ngFor="let col of columns"
+              (click)="sortData(col.key)"
+              [style.width]="col.width"
+            >
               {{ col.label }}
               <span *ngIf="isSorted(col.key)">
                 <i
@@ -39,7 +43,7 @@
                 [checked]="isSelected(item)"
               />
             </td>
-            <td *ngFor="let col of columns">
+            <td *ngFor="let col of columns" [style.width]="col.width">
               <ng-container
                 *ngIf="col.key === 'formaPagamento'; else defaultCell"
               >

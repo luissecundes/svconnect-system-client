@@ -1,39 +1,74 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
-import { MenuComponent } from '../../shared/menu/menu.component';
+import { ProdutosService } from '../../services/produtos/produtos.service';
+import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.component';
 import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
-import { ProdutosDynamicTableComponent } from '../../mocks/produtos-dynamic-table/produtos-dynamic-table.component';
+import { MenuComponent } from '../../shared/menu/menu.component';
+import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos',
-  imports: [CommonModule, BaseLayoutComponent,
-      MenuComponent,
-      DetailDrawerComponent,
-      ProdutosDynamicTableComponent,],
+  standalone: true,
+  imports: [
+    CommonModule,
+    BaseLayoutComponent,
+    MenuComponent,
+    DetailDrawerComponent,
+    DynamicTableComponent,
+  ],
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.scss',
 })
-export class ProdutosComponent extends SidenavBaseComponent {
+export class ProdutosComponent extends SidenavBaseComponent implements OnInit {
+  drawerVisible$;
+  selectedItem$;
 
-    drawerVisible$;
-    selectedItem$;
+  produtos: any[] = [];
+  columns = [
+    { key: 'id', label: 'ID', width: '25px' },
+    { key: 'skuCode', label: 'SKU', width: '80px' },
+    { key: 'name', label: 'Nome', width: '200px' },
+    { key: 'productType', label: 'Tipo', width: '150px' },
+    { key: 'unitOfMeasure', label: 'Unidade', width: '60px' },
+    { key: 'productStatus', label: 'Status', width: '30px' },
+  ];
 
-    constructor(private drawerService: DetailDrawerService, private router: Router) {
-      super();
-      this.drawerVisible$ = this.drawerService.drawerVisible$;
-      this.selectedItem$ = this.drawerService.selectedItem$;
-    }
+  constructor(
+    private produtosService: ProdutosService,
+    private drawerService: DetailDrawerService,
+    private router: Router
+  ) {
+    super();
+    this.drawerVisible$ = this.drawerService.drawerVisible$;
+    this.selectedItem$ = this.drawerService.selectedItem$;
+  }
 
-    onRowClicked(item: any) {
-      this.drawerService.toggle(item);
-    }
+  ngOnInit() {
+    this.produtosService.getProdutos().subscribe({
+      next: (response) => {
+        this.produtos = response.data.content.map((produto: any) => ({
+          ...produto,
+          productType: produto.productType?.name || '',
+          unitOfMeasure: produto.unitOfMeasure?.description || '',
+          productStatus: produto.productStatus?.description || '',
+        }));
+        console.log('Produtos:', this.produtos);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar produtos:', err);
+      },
+    });
+  }
 
-    closeDetail() {
-      this.drawerService.close();
+  onRowClicked(item: any) {
+    this.drawerService.toggle(item);
+  }
+
+  closeDetail() {
+    this.drawerService.close();
   }
 
   onInsertProdutos() {

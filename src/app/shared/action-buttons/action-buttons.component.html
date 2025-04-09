@@ -1,0 +1,13 @@
+<div class="action-buttons">
+  <button
+    *ngFor="let btn of buttons"
+    type="{{ btn.type || 'button' }}"
+    class="btn"
+    [ngClass]="'btn-' + (btn.color || 'primary')"
+    [disabled]="btn.disabled"
+    (click)="btn.action()"
+  >
+    <i *ngIf="btn.icon" class="me-2" [class]="'fas ' + btn.icon"></i>
+    {{ btn.label }}
+  </button>
+</div>

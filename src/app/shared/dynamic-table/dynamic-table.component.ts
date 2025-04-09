@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DynamicColumn } from '../../core/interfaces/dynamic-column.interface';
+
 
 @Component({
   selector: 'app-dynamic-table',
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class DynamicTableComponent {
-  @Input() columns: { key: string; label: string }[] = [];
+  @Input() columns: DynamicColumn[] = [];
   @Input() data: any[] = [];
   @Input() actions: {
     icon: string;
@@ -17,7 +19,6 @@ export class DynamicTableComponent {
     action: (item: any) => void;
   }[] = [];
   @Input() showSelectionColumn: boolean = true;
-
   @Output() selectionChanged: EventEmitter<any[]> = new EventEmitter();
   @Output() rowClicked = new EventEmitter<any>();
 
@@ -63,7 +64,6 @@ export class DynamicTableComponent {
     return Array.from(this.selectedItems);
   }
 
-  // Função para ordenar os dados
   sortData(columnKey: string) {
     if (this.sortColumn === columnKey) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -96,12 +96,10 @@ export class DynamicTableComponent {
     return colors[paymentMethod] || '⚫';
   }
 
-  // Método para verificar se a coluna está ordenada
   isSorted(columnKey: string): boolean {
     return this.sortColumn === columnKey;
   }
 
-  // Método para verificar a direção da ordenação
   getSortDirection(columnKey: string): string {
     return this.sortColumn === columnKey ? this.sortDirection : '';
   }

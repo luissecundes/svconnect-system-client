@@ -1,7 +1,7 @@
 export interface LoginResponse {
   status: string;
   code: number;
-  data: string; // Aqui está o token JWT
+  data: string; 
   message: string;
   errors: string[];
 }

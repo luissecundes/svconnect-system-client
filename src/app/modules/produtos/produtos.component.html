@@ -5,10 +5,13 @@
       <div class="body-area">
         <app-menu (insert)="onInsertProdutos()"></app-menu>
 
-        <app-produtos-dynamic-table
+        <app-dynamic-table
+          [columns]="columns"
+          [data]="produtos"
+          [showSelectionColumn]="false"
           (rowClicked)="onRowClicked($event)"
-        ></app-produtos-dynamic-table>
-
+        >
+        </app-dynamic-table>
         <app-detail-drawer
           [visible]="(drawerVisible$ | async) ?? false"
           [data]="selectedItem$ | async"

@@ -4,14 +4,35 @@ import { BaseLayoutComponent } from '../../../shared/layout/base-layout/base-lay
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
 import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
 import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 
 @Component({
   selector: 'app-produtos.update',
-  imports: [CommonModule, BaseLayoutComponent, DynamicFormComponent],
+  imports: [
+    CommonModule,
+    BaseLayoutComponent,
+    DynamicFormComponent,
+    ActionButtonsComponent,
+  ],
   templateUrl: './produtos.update.component.html',
   styleUrl: './produtos.update.component.scss',
 })
 export class ProdutosUpdateComponent extends SidenavBaseComponent {
+  produtoForm: FormGroup;
+  constructor(private fb: FormBuilder) {
+    super();
+    this.produtoForm = this.fb.group({
+      id: [''],
+      nomeProduto: [''],
+      precoCusto: [0],
+      precoVenda: [0],
+      descricao: [''],
+    });
+  }
+
+  saveUrl = '/api/produtos';
+
   fields: DynamicField[] = [
     {
       key: 'id',
@@ -84,4 +105,12 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
       colSpan: 12,
     },
   ];
+
+  onCancel() {
+    console.log('Produto salvo:');
+  }
+
+  onSave() {
+    console.log('Produto salvo:');
+  }
 }

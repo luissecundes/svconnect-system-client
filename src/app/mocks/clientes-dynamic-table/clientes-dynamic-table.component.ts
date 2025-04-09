@@ -168,12 +168,10 @@ export class ClientesDynamicTableComponent {
     },
   ];
 
-  // Método para lidar com a seleção
   onSelectionChanged(selectedItems: any[]) {
     console.log('Selected items:', selectedItems);
   }
 
-  // Ações de exemplo
   edit(item: any) {
     console.log('Edit:', item);
   }
