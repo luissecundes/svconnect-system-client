@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicColumn } from '../../core/interfaces/dynamic-column.interface';
 
-
 @Component({
   selector: 'app-dynamic-table',
   templateUrl: './dynamic-table.component.html',
@@ -19,12 +18,67 @@ export class DynamicTableComponent {
     action: (item: any) => void;
   }[] = [];
   @Input() showSelectionColumn: boolean = true;
-  @Output() selectionChanged: EventEmitter<any[]> = new EventEmitter();
+
+  @Output() selectionChanged = new EventEmitter<any[]>();
   @Output() rowClicked = new EventEmitter<any>();
 
-  selectedItems: Set<any> = new Set();
-  sortColumn: string = '';
+  selectedItems = new Set<any>();
+  sortColumn = '';
   sortDirection: 'asc' | 'desc' = 'asc';
+  currentPage = 1;
+  itemsPerPage = 10;
+
+  get totalPages(): number {
+    return Math.ceil(this.data.length / this.itemsPerPage);
+  }
+
+  get paginatedData(): any[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.data.slice(start, start + this.itemsPerPage);
+  }
+
+  getPages(): (number | string)[] {
+    const pages: (number | string)[] = [];
+    const total = this.totalPages;
+
+    if (total <= 4) {
+      for (let i = 1; i <= total; i++) pages.push(i);
+    } else {
+      if (this.currentPage <= 3) {
+        pages.push(1, 2, 3, '...', total);
+      } else if (this.currentPage >= total - 2) {
+        pages.push(1, '...', total - 2, total - 1, total);
+      } else {
+        pages.push(1, '...', this.currentPage, '...', total);
+      }
+    }
+
+    return pages;
+  }
+
+  handlePageClick(page: number | string) {
+    if (typeof page === 'number') {
+      this.goToPage(page);
+    }
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
 
   onRowClick(item: any) {
     this.rowClicked.emit(item);
@@ -32,7 +86,7 @@ export class DynamicTableComponent {
 
   toggleSelectAll(event: any) {
     if (event.target.checked) {
-      this.data.forEach((item) => this.toggleSelectItem(item));
+      this.data.forEach((item) => this.selectedItems.add(item));
     } else {
       this.selectedItems.clear();
     }
@@ -48,20 +102,12 @@ export class DynamicTableComponent {
     this.emitSelection();
   }
 
-  isAllSelected(): boolean {
-    return this.selectedItems.size === this.data.length;
-  }
-
   isSelected(item: any): boolean {
     return this.selectedItems.has(item);
   }
 
   emitSelection() {
     this.selectionChanged.emit(Array.from(this.selectedItems));
-  }
-
-  getSelectedItems(): any[] {
-    return Array.from(this.selectedItems);
   }
 
   sortData(columnKey: string) {
@@ -76,11 +122,8 @@ export class DynamicTableComponent {
       const valA = a[columnKey];
       const valB = b[columnKey];
 
-      if (valA < valB) {
-        return this.sortDirection === 'asc' ? -1 : 1;
-      } else if (valA > valB) {
-        return this.sortDirection === 'asc' ? 1 : -1;
-      }
+      if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
+      if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
   }
@@ -100,11 +143,7 @@ export class DynamicTableComponent {
     return this.sortColumn === columnKey;
   }
 
-  getSortDirection(columnKey: string): string {
-    return this.sortColumn === columnKey ? this.sortDirection : '';
-  }
-
   trackItem(index: number, item: any): any {
-    return item ? item.id || item : index;
+    return item?.id ?? index;
   }
 }

@@ -75,3 +75,48 @@ thead th:first-child {
   background-color: #dddfe0 !important;
   font-weight: bold;
 }
+
+.pagination-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-custom {
+  display: flex;
+  list-style: none;
+  padding: 0;
+
+  .page-item {
+    margin: 0 4px;
+
+    &.active .page-link {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    &.disabled .page-link {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .page-link {
+      border: none;
+      padding: 6px 12px;
+      color: #007bff;
+      cursor: pointer;
+      background-color: transparent;
+      border-radius: 50%;
+      font-weight: bold;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #e6f0ff;
+      }
+    }
+  }
+}

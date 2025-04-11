@@ -20,7 +20,7 @@ export class ComprasDynamicTableComponent {
     { key: 'valorTotal', label: 'Valor Total' },
   ];
 
-  data = Array.from({ length: 15 }).map((_, index) => ({
+  data = Array.from({ length: 155 }).map((_, index) => ({
     codigo: this.generateCodigo(),
     emissao: this.generateDate(),
     nomeCliente: this.generateNomeCliente(),
