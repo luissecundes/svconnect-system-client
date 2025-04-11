@@ -45,16 +45,17 @@
             appCpfCnpjMask
           />
 
-          <input
-            *ngIf="field.mask === 'telefone'"
-            type="text"
-            [formControlName]="field.key"
-            [readonly]="field.readonly"
-            [disabled]="field.disabled ?? false"
-            [placeholder]="field.placeholder || ''"
-            class="form-control"
-            appTelefoneMask
-          />
+         <input
+  *ngIf="field.mask === 'telefone'"
+  type="text"
+  [formControlName]="field.key"
+  [readonly]="field.readonly"
+  [disabled]="field.disabled ?? false"
+  [placeholder]="field.placeholder || ''"
+  class="form-control"
+  mask="(00) 00000-0000"
+/>
+
         </div>
       </ng-container>
     </div>

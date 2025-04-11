@@ -11,12 +11,18 @@ import {
 import { DynamicField } from '../../core/interfaces/dynamic-field.interface';
 import { CurrencyMaskDirective } from '../../core/utils/directives/currency-mask.directive';
 import { CpfCnpjMaskDirective } from '../../core/utils/directives/cpf-cnpj-mask.directive';
-import { TelefoneMaskDirective } from '../../core/utils/directives/telephone-mask.directive';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CurrencyMaskDirective, CpfCnpjMaskDirective, TelefoneMaskDirective],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CurrencyMaskDirective,
+    CpfCnpjMaskDirective,
+    NgxMaskDirective,
+  ],
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
 })
@@ -49,4 +55,3 @@ export class DynamicFormComponent {
     });
   }
 }
-

@@ -10,6 +10,7 @@ import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { DetailDrawerComponent } from "./shared/detail-drawer/detail-drawer.component";
+import { provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { DetailDrawerComponent } from "./shared/detail-drawer/detail-drawer.comp
     NotificationComponent,
     DetailDrawerComponent
 ],
-  providers: [
+  providers: [provideNgxMask(),
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
