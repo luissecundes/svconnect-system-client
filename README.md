@@ -1,7 +1,6 @@
 
 # SV Connect System Client
 
-![Logo](https://via.placeholder.com/150x50?text=SvconnectSystemClient)  
 *Sistema Cliente para Svconnect*  
 
 Este projeto foi gerado utilizando o [Angular CLI](https://github.com/angular/angular-cli) versão 19.2.3.
