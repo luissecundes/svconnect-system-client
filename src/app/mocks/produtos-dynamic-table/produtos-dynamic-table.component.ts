@@ -19,7 +19,7 @@ export class ProdutosDynamicTableComponent {
     { key: 'preco', label: 'Preço' },
   ];
 
-  data = Array.from({ length: 15 }).map((_, index) => ({
+  data = Array.from({ length: 180 }).map((_, index) => ({
     codigo: this.generateCodigo(),
     emissao: this.generateDate(),
     nomeProduto: this.generateNomeProduto(),

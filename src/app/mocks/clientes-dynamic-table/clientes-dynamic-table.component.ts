@@ -21,7 +21,7 @@ export class ClientesDynamicTableComponent {
   ];
 
   // Gerar dados mockados dinamicamente
-  data = Array.from({ length: 15 }).map((_, index) => ({
+  data = Array.from({ length: 150 }).map((_, index) => ({
     codigo: `C00${index + 1}`,
     cadastro: this.generateDate(),
     nomeRazao: this.generateNomeRazao(),
@@ -94,7 +94,9 @@ export class ClientesDynamicTableComponent {
   }
 
   private generateVendedorResponsavel(): string {
-    const vendedores = ['Ana Carolina', 'Andressa Souza', 'Luis Henrique'];
+    const vendedores = [
+      'Ana Carolina', 'Andressa Souza', 'Luis Henrique', 'Marcos Silva', 'Fernanda Oliveira', 'Lucas Alves',
+    ];
     return vendedores[Math.floor(Math.random() * vendedores.length)];
   }
 }

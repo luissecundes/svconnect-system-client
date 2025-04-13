@@ -10,7 +10,7 @@ import { DynamicTableComponent } from '../../shared/dynamic-table/dynamic-table.
 })
 export class VendasDynamicTableComponent {
   @Output() rowClicked = new EventEmitter<any>();
-  
+
   columns = [
     { key: 'codigo', label: 'Código' },
     { key: 'emissao', label: 'Emissão' },
@@ -20,7 +20,7 @@ export class VendasDynamicTableComponent {
     { key: 'valorTotal', label: 'Valor Total' },
   ];
 
-  data = Array.from({ length: 15 }).map((_, index) => ({
+  data = Array.from({ length: 170 }).map((_, index) => ({
     codigo: this.generateCodigo(),
     emissao: this.generateDate(),
     nomeCliente: this.generateNomeCliente(),
