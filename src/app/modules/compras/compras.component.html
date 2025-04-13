@@ -1,9 +1,14 @@
 <app-base-layout>
   <div class="card-container">
     <div class="card">
-      <h2>Cotação de Compra</h2>
+      <h2>Compras</h2>
       <div class="body-area">
         <app-menu></app-menu>
+
+        <app-dynamic-filter
+        [fields]="fields"
+        >
+        </app-dynamic-filter>
 
         <app-compras-dynamic-table
           (rowClicked)="onRowClicked($event)"

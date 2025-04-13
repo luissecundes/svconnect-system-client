@@ -8,6 +8,8 @@ import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.
 import { ComprasDynamicTableComponent } from '../../mocks/compras-dynamic-table/compras-dynamic-table.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
 import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
+import { FilterField } from '../../core/interfaces/dynamic-filter.interface';
+import { DynamicFilterComponent } from '../../shared/dynamic-filter/dynamic-filter.component';
 
 @Component({
   selector: 'app-compras',
@@ -18,19 +20,26 @@ import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout
     MenuComponent,
     CommonModule,
     ComprasDynamicTableComponent,
+    DynamicFilterComponent,
   ],
   templateUrl: './compras.component.html',
   styleUrl: './compras.component.scss',
 })
 export class ComprasComponent extends SidenavBaseComponent {
-  drawerVisible$
-  selectedItem$
+  drawerVisible$;
+  selectedItem$;
+  fields: FilterField[] = [
+    { label: 'Código', key: 'codigo' },
+    { label: 'Data de Emissão', key: 'dataEmissao' },
+    { label: 'Cliente', key: 'cliente' },
+    { label: 'Forma de Pagamento', key: 'formaPagamento' },
+    { label: 'Vendedor', key: 'vendedor' },
+  ];
 
   constructor(private drawerService: DetailDrawerService) {
     super();
     this.drawerVisible$ = this.drawerService.drawerVisible$;
     this.selectedItem$ = this.drawerService.selectedItem$;
-
   }
 
   onRowClicked(item: any) {

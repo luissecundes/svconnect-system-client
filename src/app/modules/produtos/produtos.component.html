@@ -4,12 +4,14 @@
       <h2>Produtos</h2>
       <div class="body-area">
         <app-menu (insert)="onInsertProdutos()"></app-menu>
+        <app-dynamic-filter [fields]="fields"> </app-dynamic-filter>
 
         <app-dynamic-table
           [columns]="columns"
           [data]="produtos"
-          [showSelectionColumn]="false"
+          [showSelectionColumn]="true"
           (rowClicked)="onRowClicked($event)"
+          (selectionChanged)="onSelectionChanged($event)"
         >
         </app-dynamic-table>
         <app-detail-drawer

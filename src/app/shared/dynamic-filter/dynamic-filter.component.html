@@ -1,0 +1,21 @@
+<div class="filter-container">
+  <form [formGroup]="form" (ngSubmit)="emitFilter()" class="filter-form">
+    <ng-container *ngFor="let field of fields">
+      <input
+        class="filter-input"
+        [placeholder]="field.label"
+        [type]="field.type || 'text'"
+        [formControlName]="field.key"
+        (blur)="emitFilter()"
+      />
+    </ng-container>
+
+    <button type="submit" class="icon-btn" aria-label="Aplicar filtros">
+      <i class="far fa-filter"></i>
+    </button>
+
+    <button type="button" class="icon-btn" aria-label="Configurar filtros">
+      <i class="far fa-cog"></i>
+    </button>
+  </form>
+</div>

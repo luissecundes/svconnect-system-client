@@ -10,18 +10,17 @@ import { DynamicColumn } from '../../core/interfaces/dynamic-column.interface';
   imports: [CommonModule],
 })
 export class DynamicTableComponent {
+  @Output() selectionChanged = new EventEmitter<any[]>();
+  @Output() rowClicked = new EventEmitter<any>();
   @Input() columns: DynamicColumn[] = [];
   @Input() data: any[] = [];
+  @Input() showSelectionColumn: boolean = true;
+  @Input() selectionColumnWidth: string = '30px';
   @Input() actions: {
     icon: string;
     tooltip: string;
     action: (item: any) => void;
   }[] = [];
-  @Input() showSelectionColumn: boolean = true;
-
-  @Output() selectionChanged = new EventEmitter<any[]>();
-  @Output() rowClicked = new EventEmitter<any>();
-
   selectedItems = new Set<any>();
   sortColumn = '';
   sortDirection: 'asc' | 'desc' = 'asc';

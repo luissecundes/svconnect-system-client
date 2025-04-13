@@ -8,6 +8,8 @@ import { MenuComponent } from '../../shared/menu/menu.component';
 import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
 import { Router } from '@angular/router';
+import { FilterField } from '../../core/interfaces/dynamic-filter.interface';
+import { DynamicFilterComponent } from '../../shared/dynamic-filter/dynamic-filter.component';
 
 @Component({
   selector: 'app-produtos',
@@ -18,6 +20,7 @@ import { Router } from '@angular/router';
     MenuComponent,
     DetailDrawerComponent,
     DynamicTableComponent,
+    DynamicFilterComponent,
   ],
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.scss',
@@ -33,6 +36,14 @@ export class ProdutosComponent extends SidenavBaseComponent implements OnInit {
     { key: 'productType', label: 'Tipo', width: '150px' },
     { key: 'unitOfMeasure', label: 'Unidade', width: '60px' },
     { key: 'productStatus', label: 'Status', width: '30px' },
+  ];
+
+  fields: FilterField[] = [
+    { label: 'Código', key: 'codigo' },
+    { label: 'Data de Emissão', key: 'dataEmissao' },
+    { label: 'Cliente', key: 'cliente' },
+    { label: 'Forma de Pagamento', key: 'formaPagamento' },
+    { label: 'Vendedor', key: 'vendedor' },
   ];
 
   constructor(
@@ -64,6 +75,10 @@ export class ProdutosComponent extends SidenavBaseComponent implements OnInit {
 
   onRowClicked(item: any) {
     this.drawerService.toggle(item);
+  }
+
+  onSelectionChanged(selectedItems: any[]) {
+    console.log('Itens selecionados:', selectedItems);
   }
 
   closeDetail() {

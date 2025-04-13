@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { MenuComponent } from '../../shared/menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { SidenavBaseComponent } from '../../core/utils/sidenav.mixin';
@@ -8,6 +6,8 @@ import { VendasDynamicTableComponent } from '../../mocks/vendas-dynamic-table/ve
 import { DetailDrawerComponent } from '../../shared/detail-drawer/detail-drawer.component';
 import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.service';
 import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
+import { DynamicFilterComponent } from '../../shared/dynamic-filter/dynamic-filter.component';
+import { FilterField } from '../../core/interfaces/dynamic-filter.interface';
 
 @Component({
   selector: 'app-vendas',
@@ -17,6 +17,7 @@ import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout
     CommonModule,
     DetailDrawerComponent,
     VendasDynamicTableComponent,
+    DynamicFilterComponent,
   ],
   templateUrl: './vendas.component.html',
   styleUrl: './vendas.component.scss',
@@ -24,6 +25,14 @@ import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout
 export class VendasComponent extends SidenavBaseComponent {
   drawerVisible$;
   selectedItem$;
+
+  fields: FilterField[] = [
+    { label: 'Código', key: 'codigo' },
+    { label: 'Data de Emissão', key: 'dataEmissao' },
+    { label: 'Cliente', key: 'cliente' },
+    { label: 'Forma de Pagamento', key: 'formaPagamento' },
+    { label: 'Vendedor', key: 'vendedor' },
+  ];
 
   constructor(private drawerService: DetailDrawerService) {
     super();
@@ -38,5 +47,8 @@ export class VendasComponent extends SidenavBaseComponent {
   closeDetail() {
     this.drawerService.close();
   }
-}
 
+  filtrarTabela(filtros: any) {
+    console.log('Filtros aplicados:', filtros);
+  }
+}

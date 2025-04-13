@@ -4,7 +4,11 @@
       <h2>Clientes</h2>
       <div class="body-area">
         <app-menu (insert)="onInsertCliente()"></app-menu>
-        <app-test-dynamic-table></app-test-dynamic-table>
+        <app-dynamic-filter
+          [fields]="fields"
+          >
+        </app-dynamic-filter>
+        <app-clientes-dynamic-table></app-clientes-dynamic-table>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
       <table class="table table-hover mb-0">
         <thead>
           <tr>
-            <th *ngIf="showSelectionColumn">
+            <th *ngIf="showSelectionColumn" [style.width]="selectionColumnWidth">
               <input
                 type="checkbox"
                 (change)="toggleSelectAll($event)"

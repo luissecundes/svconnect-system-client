@@ -4,6 +4,7 @@
       <h2>Vendas</h2>
       <div class="body-area">
         <app-menu></app-menu>
+        <app-dynamic-filter [fields]="fields"> </app-dynamic-filter>
 
         <app-vendas-dynamic-table
           (rowClicked)="onRowClicked($event)"
