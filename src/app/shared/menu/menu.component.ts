@@ -36,7 +36,8 @@ export class MenuComponent implements OnDestroy {
   @Output() export = new EventEmitter<void>();
 
   dropdownOpen = false;
-  hasEdited: boolean = false; // Variável para controlar a visibilidade do botão Alterar
+  hasEdited: boolean = false;
+  shouldPreserveSelection = false;
 
   selectedCount: number = 0;
   private routerSubscription: Subscription;
@@ -47,7 +48,7 @@ export class MenuComponent implements OnDestroy {
   ) {
     this.selectionService.selectedItems$.subscribe((selectedItems) => {
       this.selectedCount = selectedItems.length;
-      this.hasEdited = this.selectedCount === 1; // Atualiza se o botão Alterar deve ser exibido
+      this.hasEdited = this.selectedCount === 1;
     });
 
     this.routerSubscription = this.router.events.subscribe((event) => {
@@ -62,8 +63,8 @@ export class MenuComponent implements OnDestroy {
   }
 
   onEdit() {
+    this.shouldPreserveSelection = true;
     this.edit.emit();
-    this.hasEdited = false; // Após editar, escondemos o botão
   }
 
   onOption1() {
@@ -86,6 +87,12 @@ export class MenuComponent implements OnDestroy {
   }
 
   resetSelectionState() {
+    if (this.shouldPreserveSelection) {
+      console.log('Preservando seleção após editar');
+      this.shouldPreserveSelection = false; // Resetar para a próxima navegação
+      return;
+    }
+
     this.selectionService.clearSelection();
     this.selectedCount = 0;
   }

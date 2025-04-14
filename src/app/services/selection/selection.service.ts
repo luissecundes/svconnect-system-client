@@ -16,6 +16,6 @@ export class SelectionService {
     return this.selectedItemsSubject.value;
   }
   clearSelection() {
-    this.selectedItemsSubject.next([]); // Limpa a seleção
+    this.selectedItemsSubject.next([]); 
   }
 }
