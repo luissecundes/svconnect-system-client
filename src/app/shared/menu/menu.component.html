@@ -3,10 +3,11 @@
     <i class="fal fa-plus-circle"></i> Incluir
   </button>
 
-  <button
+   <button
     class="action-btn"
     (click)="onEdit()"
-    *ngIf="selectedCount === 1"
+    *ngIf="hasEdited"
+    @pulseIn
   >
     <i class="fal fa-edit"></i> Alterar
   </button>
