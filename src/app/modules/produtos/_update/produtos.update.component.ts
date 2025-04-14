@@ -38,17 +38,24 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
 
     this.buttons = [
       {
+        label: 'Salvar',
+        color: 'primary',
+        icon: 'fas fa-save',
+        disabled: this.produtoForm.invalid,
+        action: () => this.onSave(),
+      },
+      {
         label: 'Cancelar',
         color: 'secondary',
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
       {
-        label: 'Salvar',
-        color: 'primary',
-        icon: 'fas fa-save',
+        label: 'Excluir',
+        color: 'danger',
+        icon: 'fas fa-trash',
         disabled: this.produtoForm.invalid,
-        action: () => this.onSave(),
+        action: () => this.onDelete(),
       },
     ];
   }
@@ -135,7 +142,14 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   onSave() {
     this.alert.show({
       type: 'success',
-      message: '',
+      message: 'Produto salvo com sucesso!',
+    });
+  }
+
+  onDelete() {
+    this.alert.show({
+      type: 'success',
+      message: 'Produto excluído com sucesso!',
     });
   }
 }
