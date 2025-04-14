@@ -3,7 +3,7 @@
     <div class="card">
       <h2>Vendas</h2>
       <div class="body-area">
-        <app-menu></app-menu>
+        <app-menu (insert)="onInsertVendas()"></app-menu>
         <app-dynamic-filter [fields]="fields"> </app-dynamic-filter>
 
         <app-vendas-dynamic-table

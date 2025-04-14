@@ -8,6 +8,7 @@ import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.
 import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 import { DynamicFilterComponent } from '../../shared/dynamic-filter/dynamic-filter.component';
 import { FilterField } from '../../core/interfaces/dynamic-filter.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendas',
@@ -29,12 +30,15 @@ export class VendasComponent extends SidenavBaseComponent {
   fields: FilterField[] = [
     { label: 'Código', key: 'codigo' },
     { label: 'Data de Emissão', key: 'dataEmissao' },
-    { label: 'Cliente', key: 'cliente' },
+    { label: 'Venda', key: 'venda' },
     { label: 'Forma de Pagamento', key: 'formaPagamento' },
     { label: 'Vendedor', key: 'vendedor' },
   ];
 
-  constructor(private drawerService: DetailDrawerService) {
+  constructor(
+    private drawerService: DetailDrawerService,
+    private router: Router
+  ) {
     super();
     this.drawerVisible$ = this.drawerService.drawerVisible$;
     this.selectedItem$ = this.drawerService.selectedItem$;
@@ -50,5 +54,9 @@ export class VendasComponent extends SidenavBaseComponent {
 
   filtrarTabela(filtros: any) {
     console.log('Filtros aplicados:', filtros);
+  }
+
+  onInsertVendas() {
+    this.router.navigate(['/vendas/update']);
   }
 }

@@ -10,6 +10,7 @@ import { DetailDrawerService } from '../../services/detail-drawer/detail-drawer.
 import { BaseLayoutComponent } from '../../shared/layout/base-layout/base-layout.component';
 import { FilterField } from '../../core/interfaces/dynamic-filter.interface';
 import { DynamicFilterComponent } from '../../shared/dynamic-filter/dynamic-filter.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compras',
@@ -31,12 +32,15 @@ export class ComprasComponent extends SidenavBaseComponent {
   fields: FilterField[] = [
     { label: 'Código', key: 'codigo' },
     { label: 'Data de Emissão', key: 'dataEmissao' },
-    { label: 'Cliente', key: 'cliente' },
+    { label: 'Compra', key: 'compra' },
     { label: 'Forma de Pagamento', key: 'formaPagamento' },
     { label: 'Vendedor', key: 'vendedor' },
   ];
 
-  constructor(private drawerService: DetailDrawerService) {
+  constructor(
+    private drawerService: DetailDrawerService,
+    private router: Router
+  ) {
     super();
     this.drawerVisible$ = this.drawerService.drawerVisible$;
     this.selectedItem$ = this.drawerService.selectedItem$;
@@ -48,5 +52,9 @@ export class ComprasComponent extends SidenavBaseComponent {
 
   closeDetail() {
     this.drawerService.close();
+  }
+
+  onInsertCompras() {
+    this.router.navigate(['/compras/update']);
   }
 }

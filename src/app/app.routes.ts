@@ -13,6 +13,8 @@ import { ComprasComponent } from './modules/compras/compras.component';
 import { ClientesUpdateComponent } from './modules/clientes/_update/clientes.update.component';
 import { ProdutosComponent } from './modules/produtos/produtos.component';
 import { ProdutosUpdateComponent } from './modules/produtos/_update/produtos.update.component';
+import { VendasUpdateComponent } from './modules/vendas/_update/vendas.update.component';
+import { ComprasUpdateComponent } from './modules/compras/_update/compras.update.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -97,11 +99,31 @@ export const routes: Routes = [
     component: VendasComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
+  {
+    path: 'vendas/update',
+    component: VendasUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'vendas/update/:id',
+    component: VendasUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
 
   // Compras
   {
     path: 'compras',
     component: ComprasComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'compras/update',
+    component: ComprasUpdateComponent,
+    canActivate: [AuthGuard, LoadingGuard],
+  },
+  {
+    path: 'compras/update/:id',
+    component: ComprasUpdateComponent,
     canActivate: [AuthGuard, LoadingGuard],
   },
 
