@@ -5,7 +5,10 @@
       <table class="table table-hover mb-0">
         <thead>
           <tr>
-            <th *ngIf="showSelectionColumn" [style.width]="selectionColumnWidth">
+            <th
+              *ngIf="showSelectionColumn"
+              [style.width]="selectionColumnWidth"
+            >
               <input
                 type="checkbox"
                 (change)="toggleSelectAll($event)"
@@ -33,8 +36,8 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let item of paginatedData; trackBy: trackItem"
-            (click)="onRowClick(item)"
+            *ngFor="let item of paginatedData"
+            (click)="onRowClick(item, $event)"
           >
             <td *ngIf="showSelectionColumn">
               <input
@@ -77,9 +80,7 @@
         <nav>
           <ul class="pagination pagination-custom">
             <li class="page-item" [class.disabled]="currentPage === 1">
-              <button class="page-link" (click)="previousPage()">
-                &lt;
-              </button>
+              <button class="page-link" (click)="previousPage()">&lt;</button>
             </li>
 
             <li

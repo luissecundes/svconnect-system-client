@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicColumn } from '../../core/interfaces/dynamic-column.interface';
+import { SelectionService } from '../../services/selection/selection.service';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -21,11 +22,18 @@ export class DynamicTableComponent {
     tooltip: string;
     action: (item: any) => void;
   }[] = [];
+
   selectedItems = new Set<any>();
   sortColumn = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   currentPage = 1;
   itemsPerPage = 10;
+
+  constructor(private selectionService: SelectionService) {
+    this.selectionService.selectedItems$.subscribe((selectedItems) => {
+      this.selectedItems = new Set(selectedItems);
+    });
+  }
 
   get totalPages(): number {
     return Math.ceil(this.data.length / this.itemsPerPage);
@@ -79,7 +87,14 @@ export class DynamicTableComponent {
     }
   }
 
-  onRowClick(item: any) {
+  onRowClick(item: any, event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (
+      target.closest('input[type="checkbox"]') ||
+      target.closest('.selection-column')
+    ) {
+      return;
+    }
     this.rowClicked.emit(item);
   }
 
@@ -106,7 +121,7 @@ export class DynamicTableComponent {
   }
 
   emitSelection() {
-    this.selectionChanged.emit(Array.from(this.selectedItems));
+    this.selectionService.updateSelection(Array.from(this.selectedItems));
   }
 
   sortData(columnKey: string) {

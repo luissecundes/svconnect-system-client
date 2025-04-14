@@ -1,9 +1,9 @@
+import { Component, Output, EventEmitter } from '@angular/core';
+import { SelectionService } from '../../services/selection/selection.service';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
@@ -16,6 +16,13 @@ export class MenuComponent {
   @Output() export = new EventEmitter<void>();
 
   dropdownOpen = false;
+  selectedCount: number = 0;
+
+  constructor(private selectionService: SelectionService) {
+    this.selectionService.selectedItems$.subscribe((selectedItems) => {
+      this.selectedCount = selectedItems.length;
+    });
+  }
 
   onInsert() {
     this.insert.emit();
@@ -44,4 +51,3 @@ export class MenuComponent {
     this.dropdownOpen = !this.dropdownOpen;
   }
 }
-
