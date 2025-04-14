@@ -3,12 +3,9 @@
     <div class="card">
       <h2>Compras</h2>
       <div class="body-area">
-        <app-menu (insert)="onInsertCompras()"></app-menu>
+        <app-menu (insert)="onInsertCompras()"> </app-menu>
 
-        <app-dynamic-filter
-        [fields]="fields"
-        >
-        </app-dynamic-filter>
+        <app-dynamic-filter [fields]="fields"> </app-dynamic-filter>
 
         <app-compras-dynamic-table
           (rowClicked)="onRowClicked($event)"

@@ -1,31 +1,47 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
   @Output() insert = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<void>();
+  @Output() duplicate = new EventEmitter<void>();
+  @Output() export = new EventEmitter<void>();
+
+  dropdownOpen = false;
 
   onInsert() {
     this.insert.emit();
   }
 
   onEdit() {
-    console.log('Editar clicado');
+    this.edit.emit();
   }
 
   onOption1() {
-    console.log('Opção 1 clicada');
+    this.delete.emit();
+    this.dropdownOpen = false;
   }
 
   onOption2() {
-    console.log('Opção 2 clicada');
+    this.duplicate.emit();
+    this.dropdownOpen = false;
   }
 
   onOption3() {
-    console.log('Opção 3 clicada');
+    this.export.emit();
+    this.dropdownOpen = false;
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }
+

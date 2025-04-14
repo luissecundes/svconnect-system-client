@@ -1,10 +1,20 @@
-<!-- action-menu.component.html -->
 <div class="action-menu">
   <button class="action-btn" (click)="onInsert()">
     <i class="fal fa-plus-circle"></i> Incluir
   </button>
+
   <button class="action-btn" (click)="onEdit()">
     <i class="fal fa-edit"></i> Alterar
   </button>
-</div>
 
+  <div class="dropdown">
+    <button class="action-btn" (click)="toggleDropdown()">
+      <i class="fal fa-ellipsis-v"></i> Outros
+    </button>
+    <div class="dropdown-content" *ngIf="dropdownOpen">
+      <a (click)="onOption1()">Excluir</a>
+      <a (click)="onOption2()">Duplicar</a>
+      <a (click)="onOption3()">Exportar</a>
+    </div>
+  </div>
+</div>
