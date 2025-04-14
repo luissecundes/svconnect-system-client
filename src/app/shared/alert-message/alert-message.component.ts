@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
 })
 export class AlertMessageComponent {
   @Input() message = '';
-  @Input() type: 'success' | 'error' | 'info' = 'success';
+  @Input() type: 'success' | 'error' | 'info' | 'warning' = 'success';
   @Input() visible = false;
 }

@@ -24,7 +24,7 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   produtoForm: FormGroup;
   alertVisible = false;
   alertMessage = '';
-  alertType: 'success' | 'error' | 'info' = 'success';
+  alertType: 'success' | 'error' | 'info' | 'warning' = 'success';
   constructor(private fb: FormBuilder) {
     super();
     this.produtoForm = this.fb.group({
@@ -116,13 +116,10 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   }
 
   onSave() {
-    // Lógica de salvar aqui, se houver
-
     this.alertMessage = 'Produto salvo com sucesso!';
     this.alertType = 'success';
     this.alertVisible = true;
 
-    // Oculta após 3 segundos (ou o tempo da animação)
     setTimeout(() => {
       this.alertVisible = false;
     }, 3000);
