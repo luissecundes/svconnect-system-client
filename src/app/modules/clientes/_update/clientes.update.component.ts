@@ -40,17 +40,24 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
     });
     this.buttons = [
       {
+        label: 'Salvar',
+        color: 'primary',
+        icon: 'fas fa-save',
+        disabled: this.clientesForm.invalid,
+        action: () => this.onSave(),
+      },
+      {
         label: 'Cancelar',
         color: 'secondary',
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
       {
-        label: 'Salvar',
-        color: 'primary',
-        icon: 'fas fa-save',
+        label: 'Excluir',
+        color: 'danger',
+        icon: 'fas fa-trash',
         disabled: this.clientesForm.invalid,
-        action: () => this.onSave(),
+        action: () => this.onDelete(),
       },
     ];
   }
@@ -126,6 +133,13 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
     this.alert.show({
       type: 'success',
       message: '',
+    });
+  }
+
+  onDelete() {
+    this.alert.show({
+      type: 'success',
+      message: 'Cliente excluído com sucesso!',
     });
   }
 }

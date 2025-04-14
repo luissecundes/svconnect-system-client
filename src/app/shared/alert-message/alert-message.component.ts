@@ -43,7 +43,7 @@ export class AlertMessageComponent implements OnInit {
 
     setTimeout(() => {
       this.animationClass = 'leave';
-    }, 3000);
+    }, 1000);
   }
 
   onAnimationEnd(): void {
