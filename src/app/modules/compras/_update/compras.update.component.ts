@@ -38,20 +38,20 @@ export class ComprasUpdateComponent extends SidenavBaseComponent {
 
     this.buttons = [
       {
-        label: 'Label de Compras',
+        label: 'Salvar',
         color: 'primary',
         icon: 'fas fa-save',
         disabled: this.compraForm.invalid,
         action: () => this.onSave(),
       },
       {
-        label: 'Label de Compras',
+        label: 'Cancelar',
         color: 'secondary',
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
       {
-        label: 'Label de Compras',
+        label: 'Excluir',
         color: 'danger',
         icon: 'fas fa-trash',
         disabled: this.compraForm.invalid,

@@ -38,20 +38,20 @@ export class VendasUpdateComponent extends SidenavBaseComponent {
 
     this.buttons = [
       {
-        label: 'Label de Vendas',
+        label: 'Salvar',
         color: 'primary',
         icon: 'fas fa-save',
         disabled: this.vendasForm.invalid,
         action: () => this.onSave(),
       },
       {
-        label: 'Label de Vendas',
+        label: 'Cancelar',
         color: 'secondary',
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
       {
-        label: 'Label de Vendas',
+        label: 'Excluir',
         color: 'danger',
         icon: 'fas fa-trash',
         disabled: this.vendasForm.invalid,
