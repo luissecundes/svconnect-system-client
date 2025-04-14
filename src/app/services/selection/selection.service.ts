@@ -8,14 +8,8 @@ export class SelectionService {
   private selectedItemsSubject = new BehaviorSubject<any[]>([]);
   selectedItems$ = this.selectedItemsSubject.asObservable();
 
-  updateSelection(selectedItems: any[]) {
+  updateSelection = (selectedItems: any[]) =>
     this.selectedItemsSubject.next(selectedItems);
-  }
 
-  get selectedItems(): any[] {
-    return this.selectedItemsSubject.value;
-  }
-  clearSelection() {
-    this.selectedItemsSubject.next([]); 
-  }
+  clearSelection = () => this.selectedItemsSubject.next([]);
 }

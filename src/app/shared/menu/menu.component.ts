@@ -67,17 +67,17 @@ export class MenuComponent implements OnDestroy {
     this.edit.emit();
   }
 
-  onOption1() {
+  onDelete() {
     this.delete.emit();
     this.dropdownOpen = false;
   }
 
-  onOption2() {
+  onDuplicate() {
     this.duplicate.emit();
     this.dropdownOpen = false;
   }
 
-  onOption3() {
+  onExport() {
     this.export.emit();
     this.dropdownOpen = false;
   }
@@ -88,8 +88,7 @@ export class MenuComponent implements OnDestroy {
 
   resetSelectionState() {
     if (this.shouldPreserveSelection) {
-      console.log('Preservando seleção após editar');
-      this.shouldPreserveSelection = false; // Resetar para a próxima navegação
+      this.shouldPreserveSelection = false;
       return;
     }
 
