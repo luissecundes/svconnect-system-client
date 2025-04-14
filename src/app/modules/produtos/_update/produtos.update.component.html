@@ -4,26 +4,10 @@
     formTitle="Cadastro de Produtos"
   ></app-dynamic-form>
 
-  <div class="form-buttons">
     <app-action-buttons
-      [buttons]="[
-        {
-          label: 'Cancelar',
-          color: 'secondary',
-          icon: 'fas fa-times-circle',
-          action: onCancel.bind(this)
-        },
-        {
-          label: 'Salvar',
-          color: 'primary',
-          icon: 'fas fa-save',
-          disabled: produtoForm.invalid,
-          action: onSave.bind(this)
-        }
-      ]"
+      [buttons]="buttons"
     >
     </app-action-buttons>
-  </div>
 </app-base-layout>
 <app-alert-message
   [message]="alertMessage"

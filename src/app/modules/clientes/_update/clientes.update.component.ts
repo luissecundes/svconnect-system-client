@@ -4,15 +4,58 @@ import { BaseLayoutComponent } from '../../../shared/layout/base-layout/base-lay
 import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
 import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
+import { AlertMessageComponent } from '../../../shared/alert-message/alert-message.component';
+import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
+import { ActionButton } from '../../../core/interfaces/action-button.interface';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-clientes.update',
   standalone: true,
-  imports: [CommonModule, BaseLayoutComponent, DynamicFormComponent],
+  imports: [
+    CommonModule,
+    BaseLayoutComponent,
+    DynamicFormComponent,
+    AlertMessageComponent,
+    ActionButtonsComponent,
+  ],
   templateUrl: './clientes.update.component.html',
   styleUrls: ['./clientes.update.component.scss'],
 })
 export class ClientesUpdateComponent extends SidenavBaseComponent {
+  clientesForm: FormGroup;
+  alertVisible = false;
+  alertMessage = '';
+  alertType: 'success' | 'error' | 'info' | 'warning' = 'success';
+  buttons: ActionButton[] = [];
+
+  constructor(private fb: FormBuilder) {
+    super();
+
+    this.clientesForm = this.fb.group({
+      id: [''],
+      nomeProduto: [''],
+      precoCusto: [0],
+      precoVenda: [0],
+      descricao: [''],
+    });
+    this.buttons = [
+      {
+        label: 'Cancelar',
+        color: 'secondary',
+        icon: 'fas fa-times-circle',
+        action: () => this.onCancel(),
+      },
+      {
+        label: 'Salvar',
+        color: 'primary',
+        icon: 'fas fa-save',
+        disabled: this.clientesForm.invalid,
+        action: () => this.onSave(),
+      },
+    ];
+  }
+
   fields: DynamicField[] = [
     { key: 'id', label: 'ID', type: 'text', readonly: true, colSpan: 3 },
     {
@@ -75,4 +118,18 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
       colSpan: 4,
     },
   ];
+
+  onCancel() {
+    console.log('Produto salvo:');
+  }
+
+  onSave() {
+    this.alertMessage = 'Produto salvo com sucesso!';
+    this.alertType = 'success';
+    this.alertVisible = true;
+
+    setTimeout(() => {
+      this.alertVisible = false;
+    }, 3000);
+  }
 }

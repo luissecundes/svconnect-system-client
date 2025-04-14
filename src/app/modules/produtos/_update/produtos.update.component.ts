@@ -7,6 +7,7 @@ import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { AlertMessageComponent } from '../../../shared/alert-message/alert-message.component';
+import { ActionButton } from '../../../core/interfaces/action-button.interface';
 
 @Component({
   selector: 'app-produtos.update',
@@ -25,6 +26,8 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   alertVisible = false;
   alertMessage = '';
   alertType: 'success' | 'error' | 'info' | 'warning' = 'success';
+  buttons: ActionButton[] = [];
+
   constructor(private fb: FormBuilder) {
     super();
     this.produtoForm = this.fb.group({
@@ -34,6 +37,22 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
       precoVenda: [0],
       descricao: [''],
     });
+
+    this.buttons = [
+      {
+        label: 'Cancelar',
+        color: 'secondary',
+        icon: 'fas fa-times-circle',
+        action: () => this.onCancel(),
+      },
+      {
+        label: 'Salvar',
+        color: 'primary',
+        icon: 'fas fa-save',
+        disabled: this.produtoForm.invalid,
+        action: () => this.onSave(),
+      },
+    ];
   }
 
   saveUrl = '/api/produtos';
@@ -116,8 +135,8 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   }
 
   onSave() {
-    this.alertMessage = 'Produto salvo com sucesso!';
     this.alertType = 'success';
+    this.alertMessage = '';
     this.alertVisible = true;
 
     setTimeout(() => {

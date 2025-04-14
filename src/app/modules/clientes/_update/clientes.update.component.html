@@ -3,4 +3,14 @@
     [fields]="fields"
     formTitle="Cadastro de Clientes"
   ></app-dynamic-form>
+
+    <app-action-buttons
+      [buttons]="buttons"
+    >
+    </app-action-buttons>
 </app-base-layout>
+<app-alert-message
+  [message]="alertMessage"
+  [type]="alertType"
+  [visible]="alertVisible">
+</app-alert-message>
