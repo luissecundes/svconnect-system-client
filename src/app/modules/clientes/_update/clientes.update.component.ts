@@ -8,6 +8,8 @@ import { AlertMessageComponent } from '../../../shared/alert-message/alert-messa
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { ActionButton } from '../../../core/interfaces/action-button.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClientesService } from '../../../services/clientes/cliente.service';
+import { AlertService } from '../../../services/alert/alert.service';
 
 @Component({
   selector: 'app-clientes.update',
@@ -27,7 +29,11 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
   clientesForm: FormGroup;
   buttons: ActionButton[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private clientesService: ClientesService,
+    private alertService: AlertService
+  ) {
     super();
     this.clientesForm = this.fb.group({
       id: [''],
@@ -121,9 +127,19 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
   }
 
   onSave() {
-    this.alert.show({
-      type: 'success',
-      message: '',
+    this.clientesService.updateCliente(this.clientesForm.value).subscribe({
+      next: () => {
+        this.alertService.showAlert({
+          type: 'success',
+          message: 'Cliente salvo com sucesso!',
+        });
+      },
+      error: () => {
+        this.alertService.showAlert({
+          type: 'error',
+          message: 'Erro ao salvar o cliente. Tente novamente.', 
+        });
+      },
     });
   }
 }

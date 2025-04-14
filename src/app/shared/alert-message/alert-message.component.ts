@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-alert-message',
@@ -8,11 +9,25 @@ import { Component, Input } from '@angular/core';
   templateUrl: './alert-message.component.html',
   styleUrls: ['./alert-message.component.scss'],
 })
-export class AlertMessageComponent {
+export class AlertMessageComponent implements OnInit {
   message = '';
   type: 'success' | 'error' | 'info' | 'warning' = 'success';
   internalVisible = false;
   animationClass = '';
+  constructor(private alertService: AlertService) {}
+
+  ngOnInit() {
+    this.alertService.getAlertState().subscribe((alertState) => {
+      if (alertState) {
+        this.message = alertState.message;
+        this.type = alertState.type;
+        this.internalVisible = true;
+        this.animationClass = 'enter';
+      } else {
+        this.internalVisible = false;
+      }
+    });
+  }
 
   show({
     message = '',
