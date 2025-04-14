@@ -6,6 +6,7 @@ import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
 import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
+import { AlertMessageComponent } from '../../../shared/alert-message/alert-message.component';
 
 @Component({
   selector: 'app-produtos.update',
@@ -14,12 +15,16 @@ import { ActionButtonsComponent } from '../../../shared/action-buttons/action-bu
     BaseLayoutComponent,
     DynamicFormComponent,
     ActionButtonsComponent,
+    AlertMessageComponent,
   ],
   templateUrl: './produtos.update.component.html',
   styleUrl: './produtos.update.component.scss',
 })
 export class ProdutosUpdateComponent extends SidenavBaseComponent {
   produtoForm: FormGroup;
+  alertVisible = false;
+  alertMessage = '';
+  alertType: 'success' | 'error' | 'info' = 'success';
   constructor(private fb: FormBuilder) {
     super();
     this.produtoForm = this.fb.group({
@@ -111,6 +116,15 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   }
 
   onSave() {
-    console.log('Produto salvo:');
+    // Lógica de salvar aqui, se houver
+
+    this.alertMessage = 'Produto salvo com sucesso!';
+    this.alertType = 'success';
+    this.alertVisible = true;
+
+    // Oculta após 3 segundos (ou o tempo da animação)
+    setTimeout(() => {
+      this.alertVisible = false;
+    }, 3000);
   }
 }
