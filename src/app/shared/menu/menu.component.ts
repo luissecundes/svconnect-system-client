@@ -1,6 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { SelectionService } from '../../services/selection/selection.service';
 import { CommonModule } from '@angular/common';
+import { Router, NavigationStart } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent {
+export class MenuComponent implements OnDestroy {
   @Output() insert = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
@@ -17,10 +19,20 @@ export class MenuComponent {
 
   dropdownOpen = false;
   selectedCount: number = 0;
+  private routerSubscription: Subscription;
 
-  constructor(private selectionService: SelectionService) {
+  constructor(
+    private selectionService: SelectionService,
+    private router: Router
+  ) {
     this.selectionService.selectedItems$.subscribe((selectedItems) => {
       this.selectedCount = selectedItems.length;
+    });
+
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.resetSelectionState();
+      }
     });
   }
 
@@ -49,5 +61,16 @@ export class MenuComponent {
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  resetSelectionState() {
+    this.selectionService.clearSelection();
+    this.selectedCount = 0;
+  }
+
+  ngOnDestroy() {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 }
