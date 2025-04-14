@@ -12,7 +12,7 @@ export class AlertService {
     this.alertSubject.next(alert);
     setTimeout(() => {
       this.alertSubject.next(null);
-    }, 3000);
+    }, 1000);
   }
 
   getAlertState(): Observable<AlertState | null> {

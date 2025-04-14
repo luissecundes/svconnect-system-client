@@ -52,13 +52,6 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
-      {
-        label: 'Excluir',
-        color: 'danger',
-        icon: 'fas fa-trash',
-        disabled: this.clientesForm.invalid,
-        action: () => this.onDelete(),
-      },
     ];
   }
 
@@ -136,10 +129,4 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
     });
   }
 
-  onDelete() {
-    this.alert.show({
-      type: 'success',
-      message: 'Cliente excluído com sucesso!',
-    });
-  }
 }

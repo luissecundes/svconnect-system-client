@@ -3,12 +3,7 @@
     <i class="fal fa-plus-circle"></i> Incluir
   </button>
 
-   <button
-    class="action-btn"
-    (click)="onEdit()"
-    *ngIf="hasEdited"
-    @flipIn
-  >
+  <button class="action-btn" (click)="onEdit()" *ngIf="hasEdited" @flipIn>
     <i class="fal fa-edit"></i> Alterar
   </button>
 
@@ -17,9 +12,19 @@
       <i class="fal fa-ellipsis-v"></i> Outras Opções
     </button>
     <div class="dropdown-content" [class.show]="dropdownOpen">
-      <a (click)="onDelete()">Excluir</a>
-      <a (click)="onDuplicate()">Duplicar</a>
-      <a (click)="onExport()">Exportar</a>
+      <a (click)="onOption('delete')">Excluir</a>
+      <a (click)="onOption('duplicate')">Duplicar</a>
+      <a (click)="onOption('export')">Exportar</a>
     </div>
   </div>
 </div>
+
+<app-modal
+  *ngIf="showModal"
+  [title]="'Excluir item'"
+  [message]="'Tem certeza que deseja excluir este item?'"
+  [confirmText]="'Sim, excluir'"
+  [cancelText]="'Cancelar'"
+  (confirm)="confirmDelete()"
+  (cancel)="showModal = false"
+/>

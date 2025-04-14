@@ -50,13 +50,6 @@ export class VendasUpdateComponent extends SidenavBaseComponent {
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
-      {
-        label: 'Excluir',
-        color: 'danger',
-        icon: 'fas fa-trash',
-        disabled: this.vendasForm.invalid,
-        action: () => this.onDelete(),
-      },
     ];
   }
 

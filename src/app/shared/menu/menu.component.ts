@@ -4,10 +4,12 @@ import { SelectionService } from '../../services/selection/selection.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ModalComponent } from '../modal/modal.component';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-menu',
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   animations: [
@@ -38,13 +40,14 @@ export class MenuComponent implements OnDestroy {
   dropdownOpen = false;
   hasEdited: boolean = false;
   shouldPreserveSelection = false;
-
+  showModal: boolean = false;
   selectedCount: number = 0;
   private routerSubscription: Subscription;
 
   constructor(
     private selectionService: SelectionService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {
     this.selectionService.selectedItems$.subscribe((selectedItems) => {
       this.selectedCount = selectedItems.length;
@@ -67,21 +70,6 @@ export class MenuComponent implements OnDestroy {
     this.edit.emit();
   }
 
-  onDelete() {
-    this.delete.emit();
-    this.dropdownOpen = false;
-  }
-
-  onDuplicate() {
-    this.duplicate.emit();
-    this.dropdownOpen = false;
-  }
-
-  onExport() {
-    this.export.emit();
-    this.dropdownOpen = false;
-  }
-
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
@@ -100,5 +88,25 @@ export class MenuComponent implements OnDestroy {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
+  }
+
+  onOption(action: 'delete' | 'duplicate' | 'export') {
+    if (action === 'delete') {
+      this.showModal = true;
+    } else {
+      this[action].emit();
+      this.dropdownOpen = false;
+    }
+  }
+
+  confirmDelete() {
+    this.delete.emit();
+    this.showModal = false;
+    this.dropdownOpen = false;
+
+    this.alertService.showAlert({
+      message: 'Item excluído com sucesso!',
+      type: 'success',
+    });
   }
 }

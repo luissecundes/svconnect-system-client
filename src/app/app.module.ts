@@ -11,6 +11,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { DetailDrawerComponent } from "./shared/detail-drawer/detail-drawer.component";
 import { provideNgxMask } from 'ngx-mask';
+import { AlertMessageComponent } from './shared/alert-message/alert-message.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { provideNgxMask } from 'ngx-mask';
     RouterModule.forRoot(routes),
     HttpClientModule,
     NotificationComponent,
-    DetailDrawerComponent
+    DetailDrawerComponent,
+    AlertMessageComponent
 ],
   providers: [provideNgxMask(),
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },

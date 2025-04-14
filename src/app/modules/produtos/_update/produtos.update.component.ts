@@ -50,13 +50,6 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
         icon: 'fas fa-times-circle',
         action: () => this.onCancel(),
       },
-      {
-        label: 'Excluir',
-        color: 'danger',
-        icon: 'fas fa-trash',
-        disabled: this.produtoForm.invalid,
-        action: () => this.onDelete(),
-      },
     ];
   }
 
