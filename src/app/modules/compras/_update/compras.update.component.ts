@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { AlertMessageComponent } from '../../../shared/alert-message/alert-message.component';
 import { ActionButton } from '../../../core/interfaces/action-button.interface';
+import { AlertService } from '../../../services/alert/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compras.update',
@@ -16,17 +18,15 @@ import { ActionButton } from '../../../core/interfaces/action-button.interface';
     BaseLayoutComponent,
     DynamicFormComponent,
     ActionButtonsComponent,
-    AlertMessageComponent,
   ],
   templateUrl: './compras.update.component.html',
   styleUrl: './compras.update.component.scss',
 })
 export class ComprasUpdateComponent extends SidenavBaseComponent {
-  @ViewChild(AlertMessageComponent) alert!: AlertMessageComponent;
   compraForm: FormGroup;
   buttons: ActionButton[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private alertService: AlertService, private router: Router) {
     super();
     this.compraForm = this.fb.group({
       id: [''],
@@ -129,20 +129,13 @@ export class ComprasUpdateComponent extends SidenavBaseComponent {
   ];
 
   onCancel() {
-    console.log('Compra salva: ');
+    this.router.navigate(['/compras']);
   }
 
   onSave() {
-    this.alert.show({
+    this.alertService.showAlert({
       type: 'success',
       message: 'Compra salva com sucesso!',
-    });
-  }
-
-  onDelete() {
-    this.alert.show({
-      type: 'success',
-      message: 'Compra excluída com sucesso!',
     });
   }
 }

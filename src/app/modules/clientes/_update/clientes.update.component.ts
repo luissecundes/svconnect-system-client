@@ -8,6 +8,8 @@ import { AlertMessageComponent } from '../../../shared/alert-message/alert-messa
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { ActionButton } from '../../../core/interfaces/action-button.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AlertService } from '../../../services/alert/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes.update',
@@ -16,19 +18,19 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     CommonModule,
     BaseLayoutComponent,
     DynamicFormComponent,
-    AlertMessageComponent,
     ActionButtonsComponent,
   ],
   templateUrl: './clientes.update.component.html',
   styleUrls: ['./clientes.update.component.scss'],
 })
 export class ClientesUpdateComponent extends SidenavBaseComponent {
-  @ViewChild(AlertMessageComponent) alert!: AlertMessageComponent;
   clientesForm: FormGroup;
   buttons: ActionButton[] = [];
 
   constructor(
     private fb: FormBuilder,
+    private alertService: AlertService,
+    private router: Router
   ) {
     super();
     this.clientesForm = this.fb.group({
@@ -120,13 +122,13 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
 
   onCancel() {
     console.log('Botão de cancelador clicado:');
+    this.router.navigate(['/clientes']);
   }
 
   onSave() {
-    this.alert.show({
+    this.alertService.showAlert({
       type: 'success',
-      message: '',
+      message: 'Cliente salvo com sucesso!',
     });
   }
-
 }

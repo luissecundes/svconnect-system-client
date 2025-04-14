@@ -6,8 +6,9 @@ import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
 import { DynamicField } from '../../../core/interfaces/dynamic-field.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
-import { AlertMessageComponent } from '../../../shared/alert-message/alert-message.component';
 import { ActionButton } from '../../../core/interfaces/action-button.interface';
+import { AlertService } from '../../../services/alert/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos.update',
@@ -16,17 +17,19 @@ import { ActionButton } from '../../../core/interfaces/action-button.interface';
     BaseLayoutComponent,
     DynamicFormComponent,
     ActionButtonsComponent,
-    AlertMessageComponent,
   ],
   templateUrl: './produtos.update.component.html',
   styleUrl: './produtos.update.component.scss',
 })
 export class ProdutosUpdateComponent extends SidenavBaseComponent {
-  @ViewChild(AlertMessageComponent) alert!: AlertMessageComponent;
   produtoForm: FormGroup;
   buttons: ActionButton[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private alertService: AlertService,
+    private router: Router
+  ) {
     super();
     this.produtoForm = this.fb.group({
       id: [''],
@@ -129,20 +132,13 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   ];
 
   onCancel() {
-    console.log('Produto salvo:');
+    this.router.navigate(['/produtos']);
   }
 
   onSave() {
-    this.alert.show({
+    this.alertService.showAlert({
       type: 'success',
       message: 'Produto salvo com sucesso!',
-    });
-  }
-
-  onDelete() {
-    this.alert.show({
-      type: 'success',
-      message: 'Produto excluído com sucesso!',
     });
   }
 }
