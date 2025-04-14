@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BaseLayoutComponent } from '../../../shared/layout/base-layout/base-layout.component';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
 import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
@@ -22,10 +22,8 @@ import { ActionButton } from '../../../core/interfaces/action-button.interface';
   styleUrl: './produtos.update.component.scss',
 })
 export class ProdutosUpdateComponent extends SidenavBaseComponent {
+  @ViewChild(AlertMessageComponent) alert!: AlertMessageComponent;
   produtoForm: FormGroup;
-  alertVisible = false;
-  alertMessage = '';
-  alertType: 'success' | 'error' | 'info' | 'warning' = 'success';
   buttons: ActionButton[] = [];
 
   constructor(private fb: FormBuilder) {
@@ -135,12 +133,9 @@ export class ProdutosUpdateComponent extends SidenavBaseComponent {
   }
 
   onSave() {
-    this.alertType = 'success';
-    this.alertMessage = '';
-    this.alertVisible = true;
-
-    setTimeout(() => {
-      this.alertVisible = false;
-    }, 3000);
+    this.alert.show({
+      type: 'success',
+      message: '',
+    });
   }
 }

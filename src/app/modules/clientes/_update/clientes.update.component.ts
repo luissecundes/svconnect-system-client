@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseLayoutComponent } from '../../../shared/layout/base-layout/base-layout.component';
 import { SidenavBaseComponent } from '../../../core/utils/sidenav.mixin';
@@ -23,15 +23,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./clientes.update.component.scss'],
 })
 export class ClientesUpdateComponent extends SidenavBaseComponent {
+  @ViewChild(AlertMessageComponent) alert!: AlertMessageComponent;
   clientesForm: FormGroup;
-  alertVisible = false;
-  alertMessage = '';
-  alertType: 'success' | 'error' | 'info' | 'warning' = 'success';
   buttons: ActionButton[] = [];
 
   constructor(private fb: FormBuilder) {
     super();
-
     this.clientesForm = this.fb.group({
       id: [''],
       nomeProduto: [''],
@@ -120,16 +117,13 @@ export class ClientesUpdateComponent extends SidenavBaseComponent {
   ];
 
   onCancel() {
-    console.log('Produto salvo:');
+    console.log('Botão de cancelador clicado:');
   }
 
   onSave() {
-    this.alertMessage = 'Produto salvo com sucesso!';
-    this.alertType = 'success';
-    this.alertVisible = true;
-
-    setTimeout(() => {
-      this.alertVisible = false;
-    }, 3000);
+    this.alert.show({
+      type: 'success',
+      message: '',
+    });
   }
 }

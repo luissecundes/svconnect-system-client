@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-alert-message',
@@ -8,27 +8,48 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   templateUrl: './alert-message.component.html',
   styleUrls: ['./alert-message.component.scss'],
 })
-export class AlertMessageComponent implements OnChanges {
-  @Input() message = '';
-  @Input() type: 'success' | 'error' | 'info' | 'warning' = 'success';
-  @Input() visible = false;
+export class AlertMessageComponent {
+  message = '';
+  type: 'success' | 'error' | 'info' | 'warning' = 'success';
+  internalVisible = false;
+  animationClass = '';
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['type'] && !changes['message']?.currentValue) {
-      switch (this.type) {
-        case 'success':
-          this.message = 'Registro salvo com sucesso!';
-          break;
-        case 'error':
-          this.message = 'Ocorreu um erro ao processar sua solicitação.';
-          break;
-        case 'warning':
-          this.message = 'Atenção! Verifique os dados informados.';
-          break;
-        case 'info':
-          this.message = 'Informação importante.';
-          break;
-      }
+  show({
+    message = '',
+    type = 'success',
+  }: {
+    message?: string;
+    type?: 'success' | 'error' | 'info' | 'warning';
+  }) {
+    this.message = message || this.getDefaultMessage(type);
+    this.type = type;
+    this.internalVisible = true;
+    this.animationClass = 'enter';
+
+    setTimeout(() => {
+      this.animationClass = 'leave';
+    }, 3000);
+  }
+
+  onAnimationEnd(): void {
+    if (this.animationClass === 'leave') {
+      this.internalVisible = false;
+      this.animationClass = '';
+    }
+  }
+
+  private getDefaultMessage(type: string): string {
+    switch (type) {
+      case 'success':
+        return 'Registro salvo com sucesso!';
+      case 'error':
+        return 'Ocorreu um erro ao processar sua solicitação.';
+      case 'warning':
+        return 'Atenção! Verifique os dados informados.';
+      case 'info':
+        return 'Informação importante.';
+      default:
+        return '';
     }
   }
 }

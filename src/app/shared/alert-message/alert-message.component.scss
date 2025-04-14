@@ -23,7 +23,14 @@
   font-size: 1.2rem;
   z-index: 5001;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: fadeInOut 3s ease-in-out forwards;
+
+  &.enter {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  &.leave {
+    animation: fadeOut 0.4s ease-in forwards;
+  }
 
   &.error {
     background-color: #e74c3c;
@@ -38,20 +45,23 @@
   }
 }
 
-@keyframes fadeInOut {
-  0% {
+@keyframes fadeIn {
+  from {
     opacity: 0;
     transform: translateX(-50%) translateY(100%);
   }
-  10% {
+  to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
-  90% {
+}
+
+@keyframes fadeOut {
+  from {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
-  100% {
+  to {
     opacity: 0;
     transform: translateX(-50%) translateY(40%);
   }

@@ -1,5 +1,9 @@
-<div class="alert-overlay" *ngIf="visible">
-  <div class="alert-wrapper" [ngClass]="type">
+<div class="alert-overlay" *ngIf="internalVisible">
+  <div
+    class="alert-wrapper"
+    [ngClass]="[type, animationClass]"
+    (animationend)="onAnimationEnd()"
+  >
     <p>{{ message }}</p>
   </div>
 </div>
