@@ -6,7 +6,7 @@ export const navbarData = [
   },
   {
     routeLink: '/clientes',
-    icon: 'fa fa-users',
+    icon: 'fa fa-user',
     label: 'Clientes',
   },
   {
@@ -16,32 +16,32 @@ export const navbarData = [
   },
   {
     routeLink: '/produtos',
-    icon: 'fas fa-box',
+    icon: 'fas fa-weight-hanging',
     label: 'Produtos',
   },
   {
     routeLink: '/financeiro',
-    icon: 'fas fa-dollar-sign',
+    icon: 'fas fa-chart-line',
     label: 'Financeiro',
   },
   {
     routeLink: '/pcp',
-    icon: 'fas fa-cogs',
+    icon: 'fas fa-clipboard',
     label: 'PCP',
   },
   {
     routeLink: '/recursos-humanos',
-    icon: 'fas fa-user-tie',
+    icon: 'fas fa-users',
     label: 'Recursos Humanos',
   },
   {
     routeLink: '/vendas',
-    icon: 'fas fa-shopping-cart',
+    icon: 'fas fa-dollar-sign',
     label: 'Vendas',
   },
   {
     routeLink: '/compras',
-    icon: 'fab fa-shopify',
+    icon: 'fas fa-shopping-cart',
     label: 'Compras',
   },
 ];

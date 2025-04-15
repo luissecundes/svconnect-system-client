@@ -6,29 +6,14 @@ import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { AlertService } from '../../services/alert/alert.service';
+import { flipIn } from '../../core/animations/animation-flipin';
 
 @Component({
   selector: 'app-menu',
   imports: [CommonModule, ModalComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [
-    trigger('flipIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'rotateY(-90deg)' }),
-        animate(
-          '300ms ease-out',
-          style({ opacity: 1, transform: 'rotateY(0)' })
-        ),
-      ]),
-      transition(':leave', [
-        animate(
-          '200ms ease-in',
-          style({ opacity: 0, transform: 'rotateY(90deg)' })
-        ),
-      ]),
-    ]),
-  ],
+  animations: [flipIn],
 })
 export class MenuComponent implements OnDestroy {
   @Output() insert = new EventEmitter<void>();
