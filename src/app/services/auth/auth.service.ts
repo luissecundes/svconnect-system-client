@@ -20,6 +20,18 @@ export class AuthService {
       .pipe(map((res) => res.data));
   }
 
+/*
+  login(email: string, password: string): Observable<string> {
+    // 🔧 Modo sem backend, simula token
+    return new Observable<string>((observer) => {
+      setTimeout(() => {
+        observer.next('fake.jwt.token.123'); // token mockado
+        observer.complete();
+      }, 500); // simula delay
+    });
+  }
+*/
+
   logout(): void {
     this.storage.removeToken();
     this.router.navigate(['/login']);

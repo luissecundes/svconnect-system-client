@@ -4,6 +4,7 @@ export interface DynamicField {
   key: string;
   label: string;
   type: string;
+  options?: any[]; 
   required?: boolean;
   readonly?: boolean;
   colSpan?: number;

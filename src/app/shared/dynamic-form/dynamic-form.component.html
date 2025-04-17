@@ -13,8 +13,22 @@
             <span *ngIf="field.required">*</span>
           </label>
 
+          <input *ngIf="field.type === 'text'" ... />
+          <textarea *ngIf="field.type === 'textarea'" ...></textarea>
+          <input *ngIf="field.type === 'date'" type="date" ... />
+
+          <select
+            *ngIf="field.type === 'select'"
+            [formControlName]="field.key"
+            class="form-control"
+          >
+            <option *ngFor="let opt of field.options" [value]="opt.value">
+              {{ opt.label }}
+            </option>
+          </select>
+
           <input
-            *ngIf="!field.mask"
+            *ngIf="!field.mask && field.type !== 'select'"
             [type]="field.type || 'text'"
             [formControlName]="field.key"
             [readonly]="field.readonly"
