@@ -28,7 +28,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [LoadingGuard],
+    canActivate: [AuthGuard, LoadingGuard],
   },
 
   // Clientes
